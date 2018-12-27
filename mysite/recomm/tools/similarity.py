@@ -38,8 +38,6 @@ def Similarity(studentessay,teacheressays):
     dictionary = corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
 
-
-
     # Tf-idf Model
     tfidf = models.TfidfModel(corpus)
     corpus_tfidf = tfidf[corpus]

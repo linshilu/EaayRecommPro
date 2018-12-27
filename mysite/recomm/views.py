@@ -370,8 +370,13 @@ def init_relation(rel_path):
     print('Set up relation...')
     studentusers = pd.read_csv(rel_path, sep=',',encoding='utf_8_sig')
     studentlist = DataFrame(studentusers)
+    print(len(studentlist['学号']))
     for i in range(len(studentlist['学号'])):
-        id = studentlist.iloc[i, 0]
+        print('i')
+        print(i)
+        id = int(studentlist.iloc[i, 0])
+        print('id:')
+        print(id)
         student = Student.objects.get(pk=id)
         tid = studentlist.iloc[i, 2]
         tname = studentlist.iloc[i, 3]
@@ -702,13 +707,14 @@ def begin_match(request,assistant_id):
     return JsonResponse({'json': "ok"})
     #return HttpResponseRedirect(reverse('recomm:checkmatchresult', args=(assistant_id)))
     #return check_matchresult(request,assistant_id)
-
+num_progress = 0
 def index_match():
 
     # 此处根据目前数据库情况看是否需要重建TeacherFigure
     TeacherFigure.objects.all().delete()
     init_teacherfigure()
-
+    num_progress = 0
+    print(num_progress)
     results = match()
     return results
 
@@ -740,7 +746,7 @@ def teacher_figures(teacher_id):
 
 
 
-num_progress = 0
+
 '''
 def process_data(request,assistant_id):
     n = 0

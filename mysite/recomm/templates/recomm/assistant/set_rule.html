@@ -737,7 +737,7 @@
 															</div>
 														</form>
 
-														<form class="form-horizontal hide" id="validation-form" method="post" action="http://172.18.219.176:8000/recomm/assistant/submitrule/3/" enctype="multipart/form-data">
+														<form class="form-horizontal hide" id="validation-form" method="post" action="http://172.18.218.95:8000/recomm/assistant/submitrule/3/" enctype="multipart/form-data">
 															{% csrf_token %}
 															<div class="space-2"></div>
 
@@ -1446,7 +1446,7 @@
                 	//formData.append("token", token_value); // 其他参数按这样子加入
 
                 	var xhr = new XMLHttpRequest();
-                	xhr.open('POST', "http://172.18.219.176:8000/recomm/assistant/submitrule/0/");
+                	xhr.open('POST', "http://172.18.218.95:8000/recomm/assistant/submitrule/0/");
                 	// 上传完成后的回调函数
                 	xhr.onload = function () {
                     	if (xhr.status === 200) {

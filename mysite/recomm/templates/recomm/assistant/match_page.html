@@ -917,7 +917,7 @@
                     console.log('begin match');
                     var k = 0;
 					var sitv = setInterval(function(){
-        				var show_process_url = "http://172.18.219.176:8000/recomm/assistant/getprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
+        				var show_process_url = "http://172.18.218.95:8000/recomm/assistant/getprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
         				$.getJSON(show_process_url, function(res){
         					console.log(res);
             				$('#progressbar').progressbar( "value", res);     // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
@@ -925,13 +925,13 @@
     				}, 3000); //每隔1秒向后台请求处理过程的进度
 
     				// 后台数据处理成功后则停止sitv请求
-    				var process_data_url = "http://172.18.219.176:8000/recomm/assistant/beginmatch/"+userid+"/";
+    				var process_data_url = "http://172.18.218.95:8000/recomm/assistant/beginmatch/"+userid+"/";
         			$.getJSON(process_data_url, function(res){
         				  clearInterval(sitv);
         				  $('#progressbar').progressbar( "value", 100);
         				  // 跳转到匹配结果页面
 						  sleep(5000);
-        				  window.location.href = "http://172.18.219.176:8000/recomm/assistant/matchresult/"+userid+"/";
+        				  window.location.href = "http://172.18.218.95:8000/recomm/assistant/matchresult/"+userid+"/";
         			});
                 });
 			})
