@@ -16,7 +16,7 @@ def run():
    file_not_found_title = []
    result = pd.DataFrame(columns=['学号', '论文题目'])
 
-   studentessays = pd.read_csv(os.path.join("/home/lsl/InitData/new_data", "new_studentessay0416_01.csv"), sep=',', encoding='utf_8_sig')
+   studentessays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentessay0416_01.csv"), sep=',', encoding='utf_8_sig')
    #for i in range(190,len(studentessays['论文题目'])):
    for i in range(len(studentessays['论文题目'])):
        if isinstance(studentessays.iloc[i, 2], str):  # 有论文的项才处理
@@ -28,8 +28,8 @@ def run():
            title = str(id)+'_'+title
 
        try:
-           file = open( os.path.join("/home/lsl/InitData/new_data/StudentEssay", title + '.txt'), encoding='utf-8')
-           file2 = open(os.path.join("/home/lsl/InitData/new_data/StudentEssay", title + '_en.txt'), encoding='utf-8')
+           file = open( os.path.join("/home/xjy/InitData/new_data/StudentEssay", title + '.txt'), encoding='utf-8')
+           file2 = open(os.path.join("/home/xjy/InitData/new_data/StudentEssay", title + '_en.txt'), encoding='utf-8')
        except FileNotFoundError:
            file_not_found_stuid.append(id)
            file_not_found_title.append(title)

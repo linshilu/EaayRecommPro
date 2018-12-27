@@ -12,7 +12,7 @@ def run():
     r_id = []
     r_name = []
     r_title = []
-    studentessays = pd.read_csv(os.path.join("/home/lsl/InitData/new_data", "new_studentessay_ori.csv"), sep=',',
+    studentessays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentessay_ori.csv"), sep=',',
                                encoding='utf_8_sig')
     studentessaylist = DataFrame(studentessays)
     db_studentessays = StudentEssay.objects.all()

@@ -5,7 +5,7 @@ import os
 def run():
     resultexcel = xlwt.Workbook()
     resultsheet = resultexcel.add_sheet("result")
-    csvfile = open(os.path.join("/home/lsl/InitData/Output", "Result.csv"), 'r')
+    csvfile = open(os.path.join("/home/xjy/InitData/Output", "Result.csv"), 'r')
     reader = csv.reader(csvfile)
     l = 0
     for line in reader:
@@ -14,5 +14,5 @@ def run():
             resultsheet.write(l, r, i)
             r = r + 1
         l = l + 1
-    resultexcel.save(os.path.join("/home/lsl/InitData/Output", "Result.xls"))
+    resultexcel.save(os.path.join("/home/xjy/InitData/Output", "Result.xls"))
     print("OK")

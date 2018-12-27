@@ -14,7 +14,7 @@ def run():
 
    # Set up all student users
    print('Set up studentusers...')
-   studentusers = pd.read_csv(os.path.join("/home/lsl/InitData/new_data", "new_studentlist.csv"), sep=',', encoding='utf_8_sig')
+   studentusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentlist.csv"), sep=',', encoding='utf_8_sig')
    studentlist = DataFrame(studentusers)
    for i in range(len(studentlist['学号'])):
       id = studentlist.iloc[i, 0]

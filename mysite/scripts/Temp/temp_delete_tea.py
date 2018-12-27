@@ -11,7 +11,7 @@ def run():
    # Clear Database
    print('Delete teachers not in the list...')
 
-   teacherusers = pd.read_csv(os.path.join("/home/lsl/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
+   teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
    teacherlist = DataFrame(teacherusers)
    all_teachers = Teacher.objects.all()
    for t in all_teachers:
