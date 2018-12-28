@@ -11,9 +11,9 @@ from pandas import DataFrame
 def run():
    # Set up all teachers users
    print('Find out new teacherusers...')
-   #ori_teacherusers = pd.read_csv(os.path.join("/home/lsl/InitData", "TeacherList.csv"), sep=',', encoding='utf_8_sig')
+   #ori_teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData", "TeacherList.csv"), sep=',', encoding='utf_8_sig')
    #ori_teacherlist = DataFrame(ori_teacherusers)
-   new_teacherusers = pd.read_csv(os.path.join("/home/lsl/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
+   new_teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
    new_teacherlist = DataFrame(new_teacherusers)
    result = pd.DataFrame(columns=['新增老师'])
    add_teacher = []

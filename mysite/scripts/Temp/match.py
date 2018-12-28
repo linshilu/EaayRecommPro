@@ -27,7 +27,7 @@ def run():
     # Set up the relationships between students and teachers
     '''
     print('Set up relations...')
-    relationships = pd.read_csv(os.path.join("/home/lsl/InitData", "Relation.csv"), sep=',', encoding='utf_8_sig')
+    relationships = pd.read_csv(os.path.join("/home/xjy/InitData", "Relation.csv"), sep=',', encoding='utf_8_sig')
     relationlist = DataFrame(relationships)
     #######################################
     for i in range(len(relationlist['学号'])):
