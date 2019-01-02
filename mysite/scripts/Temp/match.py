@@ -22,12 +22,13 @@ from recomm.tools.NLTK_essays import Preprocess_Essays
 from recomm.views import index_match
 import pandas as pd
 from pandas import DataFrame
+import mysite.contexts as con
 
 def run():
     # Set up the relationships between students and teachers
     '''
     print('Set up relations...')
-    relationships = pd.read_csv(os.path.join("/home/xjy/InitData", "Relation.csv"), sep=',', encoding='utf_8_sig')
+    relationships = pd.read_csv(os.path.join(con.get_filepath(), "Relation.csv"), sep=',', encoding='utf_8_sig')
     relationlist = DataFrame(relationships)
     #######################################
     for i in range(len(relationlist['学号'])):

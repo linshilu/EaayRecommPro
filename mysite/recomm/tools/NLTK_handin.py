@@ -3,6 +3,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import jieba
 import os
+import mysite.contexts as con
 ###This is for a single passage
 
 def Preprocess_Handin(argv):
@@ -24,7 +25,7 @@ def Preprocess_Handin(argv):
     texts_filtered_stopwords_1 = [word for word in texts_tokenized if not word in english_stopwords] # Chinese stopwords
     # Preprocess2-2: Delete stopwords--Chinese stopword
     cn_stpwrdpath = "stop_words_cn.txt"
-    cn_stpwrd_dic = open(os.path.join("/home/xjy/InitData",cn_stpwrdpath), encoding='gbk')
+    cn_stpwrd_dic = open(os.path.join(con.get_filepath(), cn_stpwrdpath), encoding='gbk')
     cn_stpwrd_content = cn_stpwrd_dic.read()
     # 将停用词表转换为list
     chinese_stopwords = cn_stpwrd_content.splitlines()

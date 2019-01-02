@@ -745,14 +745,15 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($){
-			var teacher = {{teacher|safe}};
-			var userid = {{userid}};
+			var teacher = {{teacher|safe}}
+			var userid = {{userid}}
+			var ip_address = {{ip_address|safe}}
 			try {
 			  Dropzone.autoDiscover = false;
 
 			  $('#dropzone').dropzone({
 			  	//Notice: need to write teacher's url
-			    url:"http://127.0.0.1:8000/recomm/teacher/upload/"+teacher['TeacherID']+'/',
+			    url:ip_address+"/recomm/teacher/upload/"+teacher['TeacherID']+'/',
 			    previewTemplate: $('#preview-template').html(),
 
 				thumbnailHeight: 120,

@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
 import pdfminer
+import mysite.contexts as con
 import codecs
 #import slate
 from pandas import DataFrame
@@ -13,7 +14,7 @@ def run():
     not_found = []
     type_error = []
     print('Transforming teacher essays from pdf to txt...')
-    teacheressays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "add_teacheressay.csv"), sep=',', encoding='utf_8_sig')
+    teacheressays = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "add_teacheressay.csv"), sep=',', encoding='utf_8_sig')
     for i in range(len(teacheressays['论文题目'])):
         if isinstance(teacheressays.iloc[i, 2], str):  # 有论文的项才处理
             id = teacheressays.iloc[i, 0]
@@ -23,8 +24,8 @@ def run():
             title = stitle.strip()
             # read the essay
         try:
-            PdfTranstorm(['-o', os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '.txt'), '-t', 'text',
-                          os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '.pdf')])
+            PdfTranstorm(['-o', os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt'), '-t', 'text',
+                          os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.pdf')])
         except FileNotFoundError:
             print('not found error')
             print(name)

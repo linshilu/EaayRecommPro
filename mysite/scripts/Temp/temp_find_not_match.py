@@ -3,6 +3,7 @@ from recomm.tools.pdf2txt import PdfTranstorm
 from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 #import slate
 from pandas import DataFrame
@@ -12,7 +13,7 @@ def run():
     r_id = []
     r_name = []
     r_title = []
-    studentessays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentessay_ori.csv"), sep=',',
+    studentessays = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_studentessay_ori.csv"), sep=',',
                                encoding='utf_8_sig')
     studentessaylist = DataFrame(studentessays)
     db_studentessays = StudentEssay.objects.all()

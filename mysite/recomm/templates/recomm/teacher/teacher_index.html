@@ -653,7 +653,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="http://127.0.0.1:8000/recomm/teacher/handin/50056/">
+								<a id="url1" href="http://172.168.66.128:8000/recomm/teacher/handin/50056/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									论文提交
 								</a>
@@ -662,7 +662,7 @@
 							</li>
 
 							<li class="active">
-								<a href="http://127.0.0.1:8000/recomm/teacher/matchresult/50056/">
+								<a id="url2" href="http://172.168.66.128:8000/recomm/teacher/matchresult/50056/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									匹配结果
 								</a>
@@ -1165,6 +1165,16 @@
 		<script type="text/javascript">
 			var grid_data = {{grid_data|safe}}
 			var teacher_id = {{teacher_id|safe}}
+			var ip_address = {{ip_address|safe}}
+
+			var oA1 = document.getElementById('url1');
+    		var oA2 = document.getElementById('url2');
+			var url1 = ip_address + "/recomm/teacher/handin/50056/";
+			var url2 = ip_address + "/recomm/teacher/matchresult/50056/";
+
+			oA1.href = url1;
+			oA2.href = url2;
+
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
@@ -1274,7 +1284,7 @@
 						}, 0);
 					},
 
-					editurl: "http://127.0.0.1:8000/recomm/teacher/edit_teacher_essay/"+teacher_id+"/",
+					editurl: ip_address+"/recomm/teacher/edit_teacher_essay/"+teacher_id+"/",
 					caption: "jqGrid with inline editing"
 
 					//,autowidth: true,

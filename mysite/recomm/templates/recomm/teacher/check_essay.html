@@ -709,8 +709,9 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			var grid_data = {{grid_data|safe}};
+			var grid_data = {{grid_data|safe}}
 			var userid = {{userid}}
+			var ip_address = {{ip_address|safe}}
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
@@ -820,7 +821,7 @@
 						}, 0);
 					},
 
-					editurl: "http://127.0.0.1:8000/recomm/teacher/edit_teacher_essay/"+userid+"/",
+					editurl: ip_address+"/recomm/teacher/edit_teacher_essay/"+userid+"/",
 					caption: "提交情况"
 
 					//,autowidth: true,

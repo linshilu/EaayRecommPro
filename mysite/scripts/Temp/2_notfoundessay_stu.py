@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 from recomm.tools.Translate import Translate
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 from pandas import DataFrame
 import csv
@@ -16,7 +17,7 @@ def run():
    file_not_found_title = []
    result = pd.DataFrame(columns=['学号', '论文题目'])
 
-   studentessays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentessay0416_01.csv"), sep=',', encoding='utf_8_sig')
+   studentessays = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_studentessay0416_01.csv"), sep=',', encoding='utf_8_sig')
    #for i in range(190,len(studentessays['论文题目'])):
    for i in range(len(studentessays['论文题目'])):
        if isinstance(studentessays.iloc[i, 2], str):  # 有论文的项才处理
@@ -28,8 +29,8 @@ def run():
            title = str(id)+'_'+title
 
        try:
-           file = open( os.path.join("/home/xjy/InitData/new_data/StudentEssay", title + '.txt'), encoding='utf-8')
-           file2 = open(os.path.join("/home/xjy/InitData/new_data/StudentEssay", title + '_en.txt'), encoding='utf-8')
+           file = open( os.path.join(con.get_filepath(), "new_data/StudentEssay", title + '.txt'), encoding='utf-8')
+           file2 = open(os.path.join(con.get_filepath(), "new_data/StudentEssay", title + '_en.txt'), encoding='utf-8')
        except FileNotFoundError:
            file_not_found_stuid.append(id)
            file_not_found_title.append(title)

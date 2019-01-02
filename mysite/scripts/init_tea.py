@@ -6,6 +6,7 @@ from recomm.views import init_teacherfigure
 import pandas as pd
 import os
 import codecs
+import mysite.contexts as con
 #import slate
 from pandas import DataFrame
 import json
@@ -18,7 +19,7 @@ def run():
 
    # Set up all teachers users
    print('Set up teacherusers...')
-   teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/Input", "TeacherList.csv"), sep=',', encoding='utf_8_sig')
+   teacherusers = pd.read_csv(os.path.join(con.get_filepath(), "Input", "TeacherList.csv"), sep=',', encoding='utf_8_sig')
    teacherlist = DataFrame(teacherusers)
    for i in range(len(teacherlist['工资号'])):
       id = teacherlist.iloc[i, 0]
@@ -29,7 +30,7 @@ def run():
 
    # init teachers' essays
    print('Initiate teacher essays...')
-   teacheressays = pd.read_csv(os.path.join("/home/xjy/InitData/Input", "TeacherEssay.csv"), sep=',', encoding='utf_8_sig')
+   teacheressays = pd.read_csv(os.path.join(con.get_filepath(), "Input", "TeacherEssay.csv"), sep=',', encoding='utf_8_sig')
    for i in range(len(teacheressays['论文题目'])):
       if isinstance(teacheressays.iloc[i, 2],str): # 有论文的项才处理
          id = teacheressays.iloc[i, 0]
@@ -39,13 +40,13 @@ def run():
          title = stitle.strip()
          # read the essay
          '''
-         PdfTranstorm([ '-o', os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '.txt'), '-t', 'text',
-                    os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '.pdf')])
+         PdfTranstorm([ '-o', os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt'), '-t', 'text',
+                    os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.pdf')])
          '''
          # translate teachers' essays
          '''
-         ori_text_filepath = os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '.txt')
-         translate_text_filepath = os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '_en' + '.txt')
+         ori_text_filepath = os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt')
+         translate_text_filepath = os.path.join(con.get_filepath(), "TeacherEssay", name, title + '_en' + '.txt')
          try:
             Translate(ori_text_filepath, translate_text_filepath)
          except json.decoder.JSONDecodeError:
@@ -60,8 +61,8 @@ def run():
          '''
 
          # store to the database
-         #file = codecs.open(os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '_en' + '.txt'), encoding='utf-8')
-         file = codecs.open(os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '.txt'),encoding='utf-8')
+         #file = codecs.open(os.path.join(con.get_filepath(), "TeacherEssay", name, title + '_en' + '.txt'), encoding='utf-8')
+         file = codecs.open(os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt'),encoding='utf-8')
          text = file.read()
 
          teacher = Teacher.objects.get(pk=id)
