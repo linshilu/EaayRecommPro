@@ -3,13 +3,14 @@ from recomm.tools.pdf2txt import PdfTranstorm
 from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 #import slate
 from pandas import DataFrame
 
 ## 增加师生关系列表中的导师id
 def run():
-    ori_relationfile = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_relation_ori.csv"), sep=',', encoding='utf_8_sig')
+    ori_relationfile = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_relation_ori.csv"), sep=',', encoding='utf_8_sig')
     ori_relation = DataFrame(ori_relationfile)
     result = pd.DataFrame(columns=['学号','学生姓名','编号','导师姓名'])
     teacher_idlist = []

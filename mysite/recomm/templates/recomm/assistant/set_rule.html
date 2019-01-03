@@ -737,7 +737,7 @@
 															</div>
 														</form>
 
-														<form class="form-horizontal hide" id="validation-form" method="post" action="http://127.0.0.1:8000/recomm/assistant/submitrule/3/" enctype="multipart/form-data">
+														<form class="form-horizontal hide" id="validation-form" method="post" action="http://172.168.66.128:8000/recomm/assistant/submitrule/3/" enctype="multipart/form-data">
 															{% csrf_token %}
 															<div class="space-2"></div>
 
@@ -824,11 +824,6 @@
 													</div>
 
 													<div class="step-pane" data-step="3">
-                                                        <div class="center">
-															<h3 class="green">The recommendation program is ready to run! Click finish to continue!</h3>
-														</div>
-
-                                                        <div><div id="progressbar"></div><div id="percentCount"></div></div>
 														<div class="center">
 															<h3 class="blue lighter">请确认已经上传的文件</h3>
 															<span>老师最多评审的论文数：</span>
@@ -1007,8 +1002,6 @@
 <![endif]-->
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
-        <script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
   		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
   		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   		<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
@@ -1073,7 +1066,10 @@
 		<script type="text/javascript">
 
 			jQuery(function($) {
-				var userid = {{userid}};
+				var userid = {{userid}}
+				var ip_address = {{ip_address|safe}}
+				var url = ip_address+"/recomm/assistant/submitrule/3/";
+				document.getElementById("validation-form").action = url;
 				// The spinner
 				$('#spinner1').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
 				.closest('.ace-spinner')
@@ -1097,6 +1093,7 @@
 					btn_choose:'Choose',
 					btn_change:'Change',
 					droppable:false,
+					onchange:null,
 					thumbnail:false, //| true | large,
 					whitelist:'csv',
 					//blacklist:'jpg',
@@ -1109,18 +1106,9 @@
 
 					//onchange:''
 					//
-				}).on('change', function(){
-				    var filePath = $('#inputfile0').val();
-				    var arr=filePath.split('\\');
-                    var fileName=arr[arr.length-1];
-                    $('#inputfile0').attr('flog', fileName);
-                    if (fileName.indexOf("csv") != -1){
-                        swal("上传成功！","学生名单是："+fileName,"success");
-                    }
-
-                }).on('file.error.ace', function(event, info) {
+				}).on('file.error.ace', function(event, info) {
          			//nsDialog.jAlert("请上传excel格式文件","提示");
-         			swal("上传失败！","请上传csv文件：","error");
+         			console.log(info);
          			console.log('Please upload csv file');
       			});
 
@@ -1130,6 +1118,7 @@
 					btn_choose:'Choose',
 					btn_change:'Change',
 					droppable:false,
+					onchange:null,
 					thumbnail:false, //| true | large,
 					whitelist:'csv',
 					//blacklist:'jpg',
@@ -1142,18 +1131,9 @@
 
 					//onchange:''
 					//
-				}).on('change', function(){
-				    var filePath = $('#inputfile1').val();
-				    var arr=filePath.split('\\');
-                    var fileName=arr[arr.length-1];
-                    $('#inputfile1').attr('flog', fileName);
-                    if (fileName.indexOf("csv") != -1){
-                        swal("上传成功！","老师名单是："+fileName,"success");
-                    }
-
-                }).on('file.error.ace', function(event, info) {
+				}).on('file.error.ace', function(event, info) {
          			//nsDialog.jAlert("请上传excel格式文件","提示");
-         			swal("上传失败！","请上传csv文件：","error");
+         			console.log(info);
          			console.log('Please upload csv file');
       			});
 
@@ -1163,6 +1143,7 @@
 					btn_choose:'Choose',
 					btn_change:'Change',
 					droppable:false,
+					onchange:null,
 					thumbnail:false, //| true | large,
 					whitelist:'csv',
 					//blacklist:'jpg',
@@ -1175,47 +1156,31 @@
 
 					//onchange:''
 					//
-				}).on('change', function(){
-				    var filePath = $('#inputfile2').val();
-				    var arr=filePath.split('\\');
-                    var fileName=arr[arr.length-1];
-                    $('#inputfile2').attr('flog', fileName);
-                    if (fileName.indexOf("csv") != -1){
-                        swal("上传成功！","学生导师信息是："+fileName,"success");
-                    }
-
-                }).on('file.error.ace', function(event, info) {
+				}).on('file.error.ace', function(event, info) {
          			//nsDialog.jAlert("请上传excel格式文件","提示");
-         			swal("上传失败！","请上传csv文件：","error");
+         			console.log(info);
          			console.log('Please upload csv file');
       			});
 
 				$('#next').click(function(){
 					$('#teacherreview').text($('#spinner1').val());
 					$('#studentsendnum').text($('#spinner2').val());
-					$('#studentlist').text($('#inputfile0').attr('flog'));
-					$('#teacherlist').text($('#inputfile1').attr('flog'));
-					$('#info').text($('#inputfile2').attr('flog'));
-					$('#studentessay').text($('#inputfile3').attr('flog'));
+					$('#studentlist').text($('#inputfile0').val());
+					$('#teacherlist').text($('#inputfile1').val());
+					$('#info').text($('#inputfile2').val());
+					$('#studentessay').text($('#inputfile3').val());
 
 				})
 
 				//progressbar
 				$("#progressbar").progressbar({
 					value: 0,
+					create: function( event, ui ) {
+						$(this).addClass('progress progress-striped active')
+							   .children(0).addClass('progress-bar progress-bar-success');
+					}
 				});
-                $("#progressbar").css({
-                    width: '100%',
-                    background: '#EEEEEE',
-                    borderRadius:'50px',
-                    height: '25px'
-                })
-                $("#progressbar").find(".ui-progressbar-value").css({
-                    width: '100%',
-                    background: '#6fcb7f',
-                    borderRadius:'50px',
-                    height: '25px'
-                })
+
 
 				// File input3
 				$('#inputfile3').ace_file_input({
@@ -1223,6 +1188,7 @@
 					btn_choose:'Choose',
 					btn_change:'Change',
 					droppable:false,
+					onchange:null,
 					thumbnail:false, //| true | large,
 					whitelist:'csv',
 					//blacklist:'jpg',
@@ -1234,17 +1200,7 @@
 
 					//onchange:''
 					//
-				}).on('change', function(){
-				    var filePath = $('#inputfile3').val();
-				    var arr=filePath.split('\\');
-                    var fileName=arr[arr.length-1];
-                    $('#inputfile3').attr('flog', fileName);
-                    if (fileName.indexOf("csv") != -1){
-                        swal("上传成功！","学生论文列表是："+fileName,"success");
-                    }
-
-                }).on('file.error.ace', function(event, info) {
-                    swal("上传失败！","请上传csv文件：","error");
+				}).on('file.error.ace', function(event, info) {
          			console.log('Not valid file type');
       			});
 
@@ -1254,6 +1210,7 @@
 					btn_choose:'Choose',
 					btn_change:'Change',
 					droppable:false,
+					onchange:null,
 					thumbnail:false, //| true | large,
 					whitelist:'zip',
 					blacklist:'jpg',
@@ -1265,17 +1222,7 @@
 
 					//onchange:''
 					//
-				}).on('change', function(){
-				    var filePath = $('#inputfile4').val();
-				    var arr=filePath.split('\\');
-                    var fileName=arr[arr.length-1];
-                    $('#inputfile4').attr('flog', fileName);
-                    if (fileName.indexOf("zip") != -1 || fileName.indexOf("rar") != -1){
-                        swal("上传成功！","学生论文压缩包是："+fileName,"success");
-                    }
-
-                }).on('file.error.ace', function(event, info) {
-                    swal("上传失败！","请上传rar或zip文件：","error");
+				}).on('file.error.ace', function(event, info) {
          			console.log('Not valid file type');
       			});
 
@@ -1318,15 +1265,6 @@
 				//.on('changed.fu.wizard', function() {
 				//})
 				.on('finished.fu.wizard', function(e) {
-				    var sitv = setInterval(function(){
-        				var show_process_url = "http://127.0.0.1:8000/recomm/assistant/uploadprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
-        				$.getJSON(show_process_url, function(res){
-        					console.log(res);
-        					result = res.num * 100;
-            				$('#progressbar').progressbar( "value", result);     // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
-        				    $('#percentCount').text(Math.round(result) + "%");
-        				});
-    				}, 3000);
 					document.getElementById("validation-form").submit();
 					console.log('submit');
 
@@ -1511,7 +1449,7 @@
                 	//formData.append("token", token_value); // 其他参数按这样子加入
 
                 	var xhr = new XMLHttpRequest();
-                	xhr.open('POST', "http://127.0.0.1:8000/recomm/assistant/submitrule/0/");
+                	xhr.open('POST', ip_address+"/recomm/assistant/submitrule/0/");
                 	// 上传完成后的回调函数
                 	xhr.onload = function () {
                     	if (xhr.status === 200) {

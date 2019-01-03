@@ -62,7 +62,7 @@
 
 											<div class="space-6"></div>
 
-											<form id="loginform" method="post" action="http://127.0.0.1:8000/recomm/logincheck/" enctype="multipart/form-data">
+											<form id="loginform" method="post" action="http://172.168.66.128:8000/recomm/logincheck/" enctype="multipart/form-data">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -271,12 +271,20 @@
             $("#loginfo").text(loginfo['info']);
 
 			$('#login').click(function(){
+				//console.log("%s",url);
+				var ip_address = {{ip_address|safe}}
+				var url = ip_address + "/recomm/logincheck/";
+				document.getElementById("loginform").action = url;
 			    console.log('login');
 			    console.log($('#username').val());
 			    console.log($('#password').val());
 			    document.getElementById("loginform").submit();
 			});
 			$('#login-btn').click(function(){
+				//console.log("%s",url);
+				var ip_address = {{ip_address|safe}}
+				var url = ip_address + "/recomm/logincheck/";
+				document.getElementById("loginform").action = url;
 			    console.log('login');
 			    console.log($('#username').val());
 			    console.log($('#password').val());

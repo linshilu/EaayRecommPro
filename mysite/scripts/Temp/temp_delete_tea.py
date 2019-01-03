@@ -3,6 +3,7 @@ from recomm.tools.pdf2txt import PdfTranstorm
 from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 #import slate
 from pandas import DataFrame
@@ -11,7 +12,7 @@ def run():
    # Clear Database
    print('Delete teachers not in the list...')
 
-   teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
+   teacherusers = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
    teacherlist = DataFrame(teacherusers)
    all_teachers = Teacher.objects.all()
    for t in all_teachers:

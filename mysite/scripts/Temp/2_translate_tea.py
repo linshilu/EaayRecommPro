@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 from recomm.tools.Translate import Translate
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 from pandas import DataFrame
 import json
@@ -12,7 +13,7 @@ def run():
     type_error = []
     # Translate teachers' essays
     print('Translating teacher essays...')
-    teacheressays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "add_teacheressay.csv"), sep=',', encoding='utf_8_sig')
+    teacheressays = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "add_teacheressay.csv"), sep=',', encoding='utf_8_sig')
     for i in range(len(teacheressays['论文题目'])):
         if isinstance(teacheressays.iloc[i, 2], str):  # 有论文的项才处理
             id = teacheressays.iloc[i, 0]
@@ -23,8 +24,8 @@ def run():
 
 
         # translate teachers' essays
-        ori_text_filepath = os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '.txt')
-        translate_text_filepath = os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '_en' + '.txt')
+        ori_text_filepath = os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt')
+        translate_text_filepath = os.path.join(con.get_filepath(), "TeacherEssay", name, title + '_en' + '.txt')
         try:
             Translate(ori_text_filepath, translate_text_filepath)
         except json.decoder.JSONDecodeError:

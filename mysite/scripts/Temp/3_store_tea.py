@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
 import codecs
+import mysite.contexts as con
 #import slate
 from pandas import DataFrame
 from recomm.views import init_teacherfigure
@@ -16,7 +17,7 @@ def run():
    # Set up all teachers users
    '''
    print('Set up teacherusers...')
-   teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "add_teacher.csv"), sep=',', encoding='utf_8_sig')
+   teacherusers = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "add_teacher.csv"), sep=',', encoding='utf_8_sig')
    teacherlist = DataFrame(teacherusers)
    for i in range(len(teacherlist['工资号'])):
       id = teacherlist.iloc[i, 0]
@@ -31,7 +32,7 @@ def run():
    TeacherEssay.objects.all().delete()
    # init teachers' essays
    print('Initiate teacher essays...')
-   teacheressays = pd.read_csv(os.path.join("/home/xjy/InitData", "TeacherEssay.csv"), sep=',', encoding='utf_8_sig')
+   teacheressays = pd.read_csv(os.path.join(con.get_filepath(), "TeacherEssay.csv"), sep=',', encoding='utf_8_sig')
    filenotfound = []
    for i in range(len(teacheressays['论文题目'])):
       if isinstance(teacheressays.iloc[i, 2],str): # 有论文的项才处理
@@ -43,13 +44,13 @@ def run():
 
          # 已经将pdf转换成txt
          # read the essay
-         #PdfTranstorm([ '-o', os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '.txt'), '-t', 'text',
-         #           os.path.join("/home/xjy/InitData\TeacherEssay", name, title + '.pdf')])
+         #PdfTranstorm([ '-o', os.path.join(con.get_filepath(),"TeacherEssay", name, title + '.txt'), '-t', 'text',
+         #           os.path.join(con.get_filepath(),"TeacherEssay", name, title + '.pdf')])
 
 
          # store to the database
          try:
-            file = codecs.open(os.path.join("/home/xjy/InitData/TeacherEssay", name, title + '.txt'), encoding='utf-8')
+            file = codecs.open(os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt'), encoding='utf-8')
             text = file.read()
          except FileNotFoundError:
             filenotfound.append(title)

@@ -742,6 +742,7 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			var grid_data = {{grid_data|safe}}
+			var ip_address = {{ip_address|safe}}
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
@@ -854,7 +855,7 @@
 						}, 0);
 					},
 
-					editurl: "http://127.0.0.1:8000/recomm/assistant/edit_student/0/",
+					editurl: ip_address+"/recomm/assistant/edit_student/0/",
 					caption: "推荐结果"
 
 					//,autowidth: true,
