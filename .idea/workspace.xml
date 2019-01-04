@@ -2,43 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351aacfb-bd53-4d8b-8117-d2a3eab9fcf8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Project1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DOC/系统bug.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOC/系统bug.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DOC/系统登陆方法" beforeDir="false" afterPath="$PROJECT_DIR$/DOC/系统登陆方法" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DOC/系统部署说明.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOC/系统部署说明.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/manage_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/manage_student.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/check_essay.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/check_essay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_handin.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_handin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_match_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_match_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/tools/NLTK_essays.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/tools/NLTK_essays.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/recomm/tools/NLTK_handin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/tools/NLTK_handin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/recomm/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/recomm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/1_store_relation.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/1_store_relation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/1_transform+translate_stu.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/1_transform+translate_stu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/1_transform_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/1_transform_tea.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/2_notfoundessay_stu.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/2_notfoundessay_stu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/2_translate_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/2_translate_tea.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/3_store_stu_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/3_store_stu_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/3_store_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/3_store_tea.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/4_store_stu_essay.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/4_store_stu_essay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/init_stu.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/init_stu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/temp_add_teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/temp_add_teacher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/temp_delete_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/temp_delete_tea.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/temp_find_not_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/temp_find_not_match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/Temp/temp_setteacherid.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/Temp/temp_setteacherid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/init_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/init_tea.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/scripts/test_xls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/test_xls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/recomm/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5265">
-              <caret line="384" column="24" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
+            <state relative-caret-position="11280">
+              <caret line="785" selection-start-line="785" selection-end-line="785" selection-end-column="20" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -63,26 +32,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/recomm/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="955" column="19" selection-start-line="955" selection-start-column="19" selection-end-line="955" selection-end-column="19" />
+            <state relative-caret-position="435">
+              <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="80" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="926" column="20" lean-forward="true" selection-start-line="926" selection-start-column="20" selection-end-line="926" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19890">
-              <caret line="1326" column="78" selection-start-line="1326" selection-start-column="78" selection-end-line="1326" selection-end-column="78" />
+            <state relative-caret-position="107">
+              <caret line="1339" column="60" selection-start-line="1339" selection-start-column="60" selection-end-line="1339" selection-end-column="60" />
               <folding>
                 <element signature="e#3736#3753#0" expanded="true" />
                 <element signature="e#4105#4122#0" expanded="true" />
@@ -90,6 +59,8 @@
                 <element signature="e#4897#4914#0" expanded="true" />
                 <element signature="e#11366#11386#0" expanded="true" />
                 <element signature="e#17696#17702#0" expanded="true" />
+                <element signature="e#25716#25722#1" expanded="true" />
+                <element signature="e#28945#28967#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,14 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>conf</find>
-      <find>rule</find>
-      <find>row</find>
-      <find>Downlp</find>
-      <find>check</find>
-      <find>&lt;a href</find>
-      <find>Next</find>
-      <find>match()</find>
       <find>172.18.216.46:80</find>
       <find>No teacher</find>
       <find>init_tea</find>
@@ -128,15 +91,23 @@
       <find>match</find>
       <find>TeacherFigure</find>
       <find>init_re</find>
-      <find>get_progress</find>
       <find>process_data</find>
       <find>get_pro</find>
       <find>172.18.218.95</find>
       <find>init</find>
-      <find>upload_progress</find>
       <find>172.18.219.176</find>
       <find>progressbar</find>
       <find>$PROJECT_DIR$/../../../lsl</find>
+      <find>upload_progress</find>
+      <find>get_progress</find>
+      <find>推荐规则</find>
+      <find>fuelux-wizard-container</find>
+      <find>next</find>
+      <find>正在进行推荐，请耐心等候，推荐完毕后会自动跳转至结果页面</find>
+      <find>form-horizontal</find>
+      <find>Finish</find>
+      <find>finished.fu.wizard</find>
+      <find>btn-next</find>
     </findStrings>
     <replaceStrings>
       <replace>recomm</replace>
@@ -210,19 +181,19 @@
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/login.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/user_info.html" />
         <option value="$PROJECT_DIR$/mysite/scripts/3_store_tea.py" />
-        <option value="$PROJECT_DIR$/mysite/recomm/urls.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_result.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/index.html" />
         <option value="$PROJECT_DIR$/mysite/scripts/init_tea.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/test_xls.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/tools/similarity.py" />
+        <option value="$PROJECT_DIR$/mysite/recomm/urls.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/views.py" />
-        <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html" />
+        <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="980" />
@@ -234,7 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -264,6 +234,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -442,18 +413,20 @@
       <workItem from="1545905331356" duration="720000" />
       <workItem from="1545906323915" duration="561000" />
       <workItem from="1545909082581" duration="3430000" />
-      <workItem from="1545913041085" duration="1498000" />
+      <workItem from="1545913041085" duration="1502000" />
+      <workItem from="1545980301111" duration="10794000" />
+      <workItem from="1546585016717" duration="4379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6448000" />
+    <option name="totallyTimeSpent" value="21625000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="733" height="575" extended-state="7" />
+    <frame x="67" y="25" width="733" height="575" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.110948905" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11678832" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -465,7 +438,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50214595" side_tool="true" weight="0.06504065" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.7730337" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29662922" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -828,8 +801,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5265">
-          <caret line="384" column="24" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
+        <state relative-caret-position="11280">
+          <caret line="785" selection-start-line="785" selection-end-line="785" selection-end-column="20" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
@@ -838,15 +811,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="86" />
+        <state relative-caret-position="435">
+          <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="926" column="20" lean-forward="true" selection-start-line="926" selection-start-column="20" selection-end-line="926" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19890">
-          <caret line="1326" column="78" selection-start-line="1326" selection-start-column="78" selection-end-line="1326" selection-end-column="78" />
+        <state relative-caret-position="107">
+          <caret line="1339" column="60" selection-start-line="1339" selection-start-column="60" selection-end-line="1339" selection-end-column="60" />
           <folding>
             <element signature="e#3736#3753#0" expanded="true" />
             <element signature="e#4105#4122#0" expanded="true" />
@@ -854,14 +834,9 @@
             <element signature="e#4897#4914#0" expanded="true" />
             <element signature="e#11366#11386#0" expanded="true" />
             <element signature="e#17696#17702#0" expanded="true" />
+            <element signature="e#25716#25722#1" expanded="true" />
+            <element signature="e#28945#28967#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="955" column="19" selection-start-line="955" selection-start-column="19" selection-end-line="955" selection-end-column="19" />
         </state>
       </provider>
     </entry>

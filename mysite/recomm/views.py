@@ -777,6 +777,14 @@ def get_progress(request,assistant_id):
     print(num_progress)
     return JsonResponse({'num': num_progress}, safe=False)
 
+def initial_progress(request,assistant_id):
+    # cookie检查
+    if (request.COOKIES['userid'] != assistant_id):
+        str = {'info': 'Please log in first.'}
+        return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
+
+    num_progress = 0
+    return JsonResponse({'num': num_progress}, safe=False)
 
 # To Do # To extend the number of teachers and students and configure the rules
 # Match each student's essay with teacher and insert into the database of "Recommendation"

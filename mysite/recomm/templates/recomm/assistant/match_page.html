@@ -894,13 +894,13 @@
                     background: '#EEEEEE',
                     borderRadius:'50px',
                     height: '25px'
-                })
+                });
                 $("#progressbar").find(".ui-progressbar-value").css({
                     width: '100%',
                     background: '#6fcb7f',
                     borderRadius:'50px',
                     height: '25px'
-                })
+                });
 				$('[data-rel=tooltip]').tooltip();
 
 				$('.select2').css('width','200px').select2({allowClear:true})
@@ -923,13 +923,19 @@
 
                 $('#begin_match').click(function(){
                     console.log('begin match');
+                    $("#begin_match").attr("disabled", true);
+                    $("a").click(function(){return false;});
                     var result = 0;
                     var temp = 0;
                     var k = 0;
 					var sitv = setInterval(function(){
         				var show_process_url = "http://127.0.0.1:8000/recomm/assistant/getprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
         				$.getJSON(show_process_url, function(res){
-        					if (res.num == 0){
+        					if (parseInt(res.num) == 1){
+								var initial_process_url = "http://127.0.0.1:8000/recomm/assistant/initialprogress/"+userid+"/";
+
+        					}
+        					if (res.num == 0 || parseInt(res.num) == 1){
         						result = result+1;
         						k = k+1;
 							}
