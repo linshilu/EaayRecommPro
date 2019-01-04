@@ -24,6 +24,7 @@ from .tools.NLTK_essays import Preprocess_Essays
 import pandas as pd
 import zipfile
 from pandas import DataFrame
+import numpy as np
 import time
 from time import sleep
 import PyPDF2
@@ -735,6 +736,7 @@ def init_teacherfigure():
 def teacher_figures(teacher_id):
     # Get all teachers' essay
     teacher = Teacher.objects.get(pk=teacher_id)
+    #print(teacher_id);
     print('Setting teacher figure...')
     print(teacher.teacher_name)
     s = ''
@@ -780,8 +782,8 @@ def match():
 
     # 从csv文件中读取数量限制的规则
     vpro = pd.read_csv(os.path.join(con.get_filepath(), "Input/Rules","Rule.csv"), sep=',', encoding='utf_8_sig')
-    teacher_reviewnum = vpro.loc[0,"teacher_reviewnum"]
-    student_sendnum = vpro.loc[0, "student_sendnum"]
+    teacher_reviewnum = vpro.loc[0,"teacher_reviewnum"] #老师最多评审的论文数
+    student_sendnum = vpro.loc[0, "student_sendnum"] #学生论文送审老师数量
 
     results = {}
     # Calculate student's essay with each teacher's figure
@@ -829,6 +831,9 @@ def match():
         max = 0
         max_index = 0
 
+        tea_num = len(teacher_li)
+        teacher_relation = np.zeros((tea_num, tea_num), dtype=np.int) #二维数据记录i老师下的n个学生送审了论文给j老师
+
         # Clear the unreasonable items
         for p in range(len(student_essays)):
             if student_recommend[p] < student_sendnum:
@@ -847,8 +852,14 @@ def match():
                     r = Relation.objects.filter(student=student)
                     for i in range(len(r)):
                         t = r[i].teacher_id
+                        if teacher_relation[teacher_li.index(t)][teacher_li.index(teacherid)] != 0:
+                            print("***********Same teacher************")
+                            flag += 1 # 将一个导师的学生分给不同的评阅人
+                            break
+
                         if teacherid == t:
                             flag += 1 # The teacher is this students' teacher
+                            break
 
                     # Check how many essays the teacher has to review
                     teacherreviewnum = len(Recommendation.objects.filter(recommend_teacher_id=teacherid))
@@ -876,6 +887,14 @@ def match():
         max_teachername = Teacher.objects.get(pk=max_teacherid).teacher_name
         max_studentessay.recommendation_set.create(recommend_teacher_id=max_teacherid, recommend_teacher_name=max_teachername)
         student_recommend[max_index] += 1
+
+        # record teacher_relation[i][j]+=1
+        student = max_studentessay.student
+        r = Relation.objects.filter(student=student)
+        for i in range(len(r)):
+            t = r[i].teacher_id
+            teacher_relation[teacher_li.index(t)][teacher_li.index(max_teacherid)] += 1
+
         # delete the item
         del results[max_studentessay.student_essay_title][0]
         print('Recommend OK. Delete: '+str(results[max_studentessay.student_essay_title][0]))
