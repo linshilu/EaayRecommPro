@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^assistant/setrule/(?P<assistant_id>[0-9]+)/$', views.set_rule, name='setrule'),
     url(r'^assistant/submitrule/(?P<assistant_id>[0-9]+)/$', views.submit_rule, name='submitrule'),
     url(r'^assistant/getprogress/(?P<assistant_id>[0-9]+)/$', views.get_progress, name='getprogress'),
+url(r'^assistant/initialprogress/(?P<assistant_id>[0-9]+)/$', views.initial_progress, name='getprogress'),
     url(r'^assistant/uploadprogress/(?P<assistant_id>[0-9]+)/$', views.upload_progress, name='upload_progress'),
     url(r'^assistant/downloadresult/$', views.download_result, name='downloadresult'),
     url(r'^assistant/fileformatrule/$', views.download_fileformat_rule, name='downloadfileformatrule'),

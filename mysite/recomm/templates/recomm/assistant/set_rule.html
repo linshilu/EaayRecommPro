@@ -824,20 +824,46 @@
 													</div>
 
 													<div class="step-pane" data-step="3">
+                                                        <div class="center">
+															<h3 style="color: #69AA46">正在上传文件，请耐心等候，上传完毕后会自动跳转至匹配页面！</h3>
+														</div>
+
+                                                        <div style="width: 50%; margin-left: auto; margin-right: auto"><div id="progressbar"></div><div id="percentCount"></div></div>
+
 														<div class="center">
-															<h3 class="blue lighter">请确认已经上传的文件</h3>
-															<span>老师最多评审的论文数：</span>
-															<div id="teacherreview"></div>
-															<span>学生论文送审几位老师：</span>
-															<div id="studentsendnum"></div>
-															<span>学生名单：</span>
-															<div id="studentlist"></div>
-															<span>老师名单：</span>
-															<div id="teacherlist"></div>
-															<span>学生导师信息：</span>
-															<div id="info"></div>
-															<span>学生论文：</span>
-															<div id="studentessay"></div>
+															<h3 class="green">请确认已经上传的内容</h3>
+															<table align="center"  border="1" cellspacing="5" cellpadding="5" bordercolor="#5293C4" width="500px">
+																<tr>
+																	<th style="text-align:center; color: #69AA46" >上传项目</th>
+																	<th style="text-align:center; color: #69AA46">上传内容</th>
+																</tr>
+																<tr>
+																	<td>老师最多评审的论文数</td>
+																	<td id="teacherreview"></td>
+																</tr>
+																<tr>
+																	<td>学生论文送审几位老师</td>
+																	<td id="studentsendnum"></td>
+																</tr>
+																<tr>
+																	<td>学生名单</td>
+																	<td id="studentlist"></td>
+																</tr>
+																<tr>
+																	<td>学生导师信息</td>
+																	<td id="info"></td>
+																</tr>
+																<tr>
+																	<td>学生论文名单</td>
+																	<td id="studentessay"></td>
+																</tr>
+																<tr>
+																	<td>学生论文压缩包</td>
+																	<td id="essaylist"></td>
+																</tr>
+															</table>
+
+
 
 														</div>
 													</div>
@@ -848,7 +874,6 @@
 															The recommendation program is ready to run! Click finish to continue!
 														</div>
 
-                                                        <div id="progressbar"></div>
 													</div>
 												</div>
 
@@ -1165,13 +1190,13 @@
 				$('#next').click(function(){
 					$('#teacherreview').text($('#spinner1').val());
 					$('#studentsendnum').text($('#spinner2').val());
-					$('#studentlist').text($('#inputfile0').val());
-					$('#teacherlist').text($('#inputfile1').val());
-					$('#info').text($('#inputfile2').val());
-					$('#studentessay').text($('#inputfile3').val());
+					$('#studentlist').text($('#inputfile0').attr('flog'));
+					$('#info').text($('#inputfile2').attr('flog'));
+					$('#studentessay').text($('#inputfile3').attr('flog'));
+					$('#essaylist').text($('#inputfile4').attr('flog'));
+
 
 				})
-
 				//progressbar
 				$("#progressbar").progressbar({
 					value: 0,
@@ -1265,6 +1290,22 @@
 				//.on('changed.fu.wizard', function() {
 				//})
 				.on('finished.fu.wizard', function(e) {
+
+				    $('#next').attr("disabled", true);
+				    $("a").click(function(){return false;});
+				    var sitv = setInterval(function(){
+        				var show_process_url = "http://127.0.0.1:8000/recomm/assistant/uploadprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
+        				$.getJSON(show_process_url, function(res){
+        					console.log(res);
+        					var result = res.num * 100;
+        					if (parseInt(result) == 100){
+        						result = 99;
+							}
+            				$('#progressbar').progressbar( "value", result);     // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
+        				    $('#percentCount').text(Math.round(result) + "%");
+        				});
+    				}, 3000);
+
 					document.getElementById("validation-form").submit();
 					console.log('submit');
 
