@@ -3,6 +3,7 @@ from recomm.tools.pdf2txt import PdfTranstorm
 from recomm.tools.NLTK_handin import Preprocess_Handin
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 #import slate
 from pandas import DataFrame
@@ -11,9 +12,9 @@ from pandas import DataFrame
 def run():
    # Set up all teachers users
    print('Find out new teacherusers...')
-   #ori_teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData", "TeacherList.csv"), sep=',', encoding='utf_8_sig')
+   #ori_teacherusers = pd.read_csv(os.path.join(con.get_filepath(), "TeacherList.csv"), sep=',', encoding='utf_8_sig')
    #ori_teacherlist = DataFrame(ori_teacherusers)
-   new_teacherusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
+   new_teacherusers = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_teacherlist.csv"), sep=',', encoding='utf_8_sig')
    new_teacherlist = DataFrame(new_teacherusers)
    result = pd.DataFrame(columns=['新增老师'])
    add_teacher = []

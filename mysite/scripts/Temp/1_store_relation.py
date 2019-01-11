@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 from recomm.tools.Translate import Translate
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 from pandas import DataFrame
 
@@ -14,7 +15,7 @@ def run():
 
    # Set up all student users
    print('Setting up relation...')
-   studentusers = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_relation.csv"), sep=',', encoding='utf_8_sig')
+   studentusers = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_relation.csv"), sep=',', encoding='utf_8_sig')
    studentlist = DataFrame(studentusers)
    for i in range(len(studentlist['学号'])):
       id = studentlist.iloc[i, 0]

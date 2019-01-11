@@ -670,7 +670,7 @@
 															正在进行推荐，请耐心等候，推荐完毕后会自动跳转至结果页面
 														</div>
 
-                                                        <div><div id="progressbar"></div><div id="percentCount"></div></div>
+                                                        <div id="progressbar"></div>
 													</div>
 												</div>
 
@@ -883,12 +883,18 @@
 		<script type="text/javascript">
 
 			jQuery(function($) {
-				var userid = {{userid}};
+				var userid = {{userid}}
+				var ip_address = {{ip_address|safe}}
 
 				//progressbar
 				$("#progressbar").progressbar({
 					value: 0,
+					create: function( event, ui ) {
+						$(this).addClass('progress progress-striped active')
+							   .children(0).addClass('progress-bar progress-bar-success');
+					}
 				});
+
 				$("#progressbar").css({
                     width: '100%',
                     background: '#EEEEEE',
@@ -901,6 +907,7 @@
                     borderRadius:'50px',
                     height: '25px'
                 });
+
 				$('[data-rel=tooltip]').tooltip();
 
 				$('.select2').css('width','200px').select2({allowClear:true})
@@ -927,10 +934,12 @@
                     $("a").click(function(){return false;});
                     var result = 0;
                     var temp = 0;
+
                     var k = 0;
 					var sitv = setInterval(function(){
-        				var show_process_url = "http://127.0.0.1:8000/recomm/assistant/getprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
+        				var show_process_url = ip_address + "/recomm/assistant/getprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
         				$.getJSON(show_process_url, function(res){
+
         					if (parseInt(res.num) == 1){
 								var initial_process_url = "http://127.0.0.1:8000/recomm/assistant/initialprogress/"+userid+"/";
 
@@ -947,17 +956,18 @@
 							}
             				$('#progressbar').progressbar( "value", result);     // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
         					$('#percentCount').text(Math.round(result) + "%");
+
         				});
-    				}, 6000); //每隔1秒向后台请求处理过程的进度
+    				}, 3000); //每隔1秒向后台请求处理过程的进度
 
     				// 后台数据处理成功后则停止sitv请求
-    				var process_data_url = "http://127.0.0.1:8000/recomm/assistant/beginmatch/"+userid+"/";
+    				var process_data_url = ip_address + "/recomm/assistant/beginmatch/"+userid+"/";
         			$.getJSON(process_data_url, function(res){
         				  clearInterval(sitv);
         				  $('#progressbar').progressbar( "value", 100);
         				  // 跳转到匹配结果页面
 						  sleep(5000);
-        				  window.location.href = "http://127.0.0.1:8000/recomm/assistant/matchresult/"+userid+"/";
+        				  window.location.href = ip_address + "/recomm/assistant/matchresult/"+userid+"/";
         			});
                 });
 			})

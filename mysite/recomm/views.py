@@ -24,6 +24,7 @@ from .tools.NLTK_essays import Preprocess_Essays
 import pandas as pd
 import zipfile
 from pandas import DataFrame
+import numpy as np
 import time
 from time import sleep
 import PyPDF2
@@ -33,6 +34,7 @@ from .tools.Translate import Translate
 import pdfminer
 import xlwt
 import csv
+import mysite.contexts as con
 
 def login(request):
     return render(request, 'recomm/login.html')
@@ -183,7 +185,7 @@ def upload_studentessay(request,assistant_id):
         essay = request.FILES.get("file",None)    # 获取上传的文件,注意对应前端的name的名字，如果没有文件，则默认为None
     if essay == None:
         return HttpResponse("No files for upload!")
-    destination = open(os.path.join("/home/xjy/InitData/StudentHandin",essay.name),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination = open(os.path.join(con.get_filepath(), "StudentHandin",essay.name),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in essay.chunks():      # 分块写入文件
          destination.write(chunk)
     destination.close()
@@ -192,10 +194,10 @@ def upload_studentessay(request,assistant_id):
     # If zip file
     str = essay.name
     if str.find('.zip') != -1:
-        f = zipfile.ZipFile(os.path.join("/home/xjy/InitData/StudentHandin",essay.name), 'r')
+        f = zipfile.ZipFile(os.path.join(con.get_filepath(), "StudentHandin",essay.name), 'r')
         # print(f.infolist())
         for file in f.namelist():
-            f.extract(file, "/home/xjy/InitData/StudentHandin")
+            f.extract(file, con.get_filepath() + "StudentHandin")
     # If not zip file
     else:
         print('pdf')
@@ -242,7 +244,7 @@ def submit_rule(request,assistant_id):
         studentessaylist = request.FILES.get("inputfile3",None)
         studentessaybag = request.FILES.get("inputfile4", None)
     if student_list == None:
-        return HttpResponse("No students namelist for upload!")
+            return HttpResponse("No students namelist for upload!")
     if rule_relation == None:
         return HttpResponse("No relation files for upload!")
     if studentessaylist == None:
@@ -251,7 +253,7 @@ def submit_rule(request,assistant_id):
         return HttpResponse("No studentessaybag for upload!")
 
     # 保存学生名单
-    destination = open(os.path.join("/home/xjy/InitData/Input","StudentList.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination = open(os.path.join(con.get_filepath(), "Input","StudentList.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in student_list.chunks():      # 分块写入文件
          destination.write(chunk)
     destination.close()
@@ -259,7 +261,7 @@ def submit_rule(request,assistant_id):
 
     # 保存老师名单
     '''
-    destination0 = open(os.path.join("/home/xjy/InitData/Input","TeacherList.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination0 = open(os.path.join(con.get_filepath(), "Input","TeacherList.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in teacher_list.chunks():      # 分块写入文件
          destination0.write(chunk)
   
@@ -268,21 +270,21 @@ def submit_rule(request,assistant_id):
     print(teacher_list.name)
       '''
     # 保存学生导师信息csv文件
-    destination1 = open(os.path.join("/home/xjy/InitData/Input/Rules","Relation.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination1 = open(os.path.join(con.get_filepath(), "Input/Rules","Relation.csv"),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in rule_relation.chunks():      # 分块写入文件
          destination1.write(chunk)
     destination1.close()
     print(rule_relation.name)
 
     # 保存学生论文列表csv文件
-    destination2 = open(os.path.join("/home/xjy/InitData/Input",studentessaylist.name),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination2 = open(os.path.join(con.get_filepath(), "Input",studentessaylist.name),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in studentessaylist.chunks():      # 分块写入文件
          destination2.write(chunk)
     destination2.close()
     print(studentessaylist.name)
 
     # 学生论文压缩包zip/rar文件
-    destination3 = open(os.path.join("/home/xjy/InitData/Input",studentessaybag.name),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination3 = open(os.path.join(con.get_filepath(), "Input",studentessaybag.name),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in studentessaybag.chunks():      # 分块写入文件
          destination3.write(chunk)
     destination3.close()
@@ -292,35 +294,35 @@ def submit_rule(request,assistant_id):
     str = studentessaybag.name
     if str.find('.zip') != -1:
         print('Unziping file...')
-        f = zipfile.ZipFile(os.path.join("/home/xjy/InitData/Input",studentessaybag.name), 'r')
-        f.extractall(path="/home/xjy/InitData/Input/StudentEssay")
+        f = zipfile.ZipFile(os.path.join(con.get_filepath(), "Input",studentessaybag.name), 'r')
+        f.extractall(path=con.get_filepath()+"Input/StudentEssay")
 
     stuessay_foler = studentessaybag.name[0:len(studentessaybag.name)-4]
-    stuessay_foler_path = os.path.join("/home/xjy/InitData/Input/StudentEssay",stuessay_foler)
+    stuessay_foler_path = os.path.join(con.get_filepath(), "Input/StudentEssay",stuessay_foler)
 
     # 更新数据库
     # 将规则信息写到csv文件中
     review_rule = pd.DataFrame(columns=['teacher_reviewnum','student_sendnum'])
     review_rule.loc[0, 'teacher_reviewnum'] = request.POST['spinner1']
     review_rule.loc[0, 'student_sendnum'] = request.POST['spinner2']
-    review_rule.to_csv(os.path.join("/home/xjy/InitData/Input/Rules","Rule.csv"),index=False, encoding='utf_8_sig')
+    review_rule.to_csv(os.path.join(con.get_filepath(), "Input/Rules","Rule.csv"),index=False, encoding='utf_8_sig')
 
     # 更新学生名单
-    stu_path = os.path.join("/home/xjy/InitData/Input","StudentList.csv")
+    stu_path = os.path.join(con.get_filepath(), "Input","StudentList.csv")
     init_stu(stu_path)
 
     # 更新老师名单
     '''
-    tea_path = os.path.join("/home/xjy/InitData/Input","TeacherList.csv")
+    tea_path = os.path.join(con.get_filepath(), "Input","TeacherList.csv")
     init_tea(tea_path)
     '''
 
     # 更新学生导师关系
-    rel_path = os.path.join("/home/xjy/InitData/Input/Rules","Relation.csv")
+    rel_path = os.path.join(con.get_filepath(), "Input/Rules","Relation.csv")
     init_relation(rel_path)
 
     # 更新学生论文（包括翻译、写入数据库等）
-    stuessay_path  = os.path.join("/home/xjy/InitData/Input","StudentEssay.csv")
+    stuessay_path  = os.path.join(con.get_filepath(), "Input","StudentEssay.csv")
     print(stuessay_foler_path)
     init_stuessay(stuessay_path,stuessay_foler_path)
 
@@ -370,8 +372,13 @@ def init_relation(rel_path):
     print('Set up relation...')
     studentusers = pd.read_csv(rel_path, sep=',',encoding='utf_8_sig')
     studentlist = DataFrame(studentusers)
+    print(len(studentlist['学号']))
     for i in range(len(studentlist['学号'])):
-        id = studentlist.iloc[i, 0]
+        print('i')
+        print(i)
+        id = int(studentlist.iloc[i, 0])
+        print('id:')
+        print(id)
         student = Student.objects.get(pk=id)
         tid = studentlist.iloc[i, 2]
         tname = studentlist.iloc[i, 3]
@@ -380,27 +387,13 @@ def init_relation(rel_path):
         relation.save()
     print('Set up relation OK.')
 
-def upload_progress(request,assistant_id):
-    # cookie检查
-    if (request.COOKIES['userid'] != assistant_id):
-        str = {'info': 'Please log in first.'}
-        return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
-
-    print('upload_progress')
-    print(upload_progressbar)
-    return JsonResponse({'num': upload_progressbar}, safe=False)
-
 def init_stuessay(stuessay_path,stuessay_folder_path):
     # init students' essays
     print('Delete student essays table ...')
     StudentEssay.objects.all().delete()
     print('Add student essays ...')
     studentessays = pd.read_csv(stuessay_path, sep=',',encoding='utf_8_sig')
-    m = 1
     for i in range(len(studentessays['姓名'])):
-        global upload_progressbar
-        upload_progressbar = m * 0.01 / len(studentessays['姓名']) * 100
-        m = m + 1
         if isinstance(studentessays.iloc[i, 2], str):  # 有论文的项才处理
             id = studentessays.iloc[i, 0]
             sname = studentessays.iloc[i, 1]
@@ -413,7 +406,7 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
             not_found = []
             type_error = []
             try:
-                PdfTranstorm(['-o', os.path.join("/home/xjy/InitData/Input/StudentEssay", title + '.txt'), '-t', 'text',
+                PdfTranstorm(['-o', os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt'), '-t', 'text',
                               os.path.join(stuessay_folder_path, title + '.pdf')])
             except FileNotFoundError:
                 print('not found error')
@@ -440,13 +433,13 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
                 print(title)
 
             # translating
-            ori_text_filepath = os.path.join("/home/xjy/InitData/Input/StudentEssay", title + '.txt')
-            translate_text_filepath = os.path.join("/home/xjy/InitData/Input/StudentEssay", title + '_en' + '.txt')
+            ori_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt')
+            translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
             Translate(ori_text_filepath, translate_text_filepath)
 
             # read the essay
             try:
-                translate_text_filepath = os.path.join("/home/xjy/InitData/Input/StudentEssay", title + '_en' + '.txt')
+                translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
                 translate_file = open(translate_text_filepath, encoding='utf-8')
             except FileNotFoundError:
                 print('********File not found:*********')
@@ -614,7 +607,7 @@ def teacher_upload(request,teacher_id):
         essay = request.FILES.get("file",None)    # 获取上传的文件,注意对应前端的name的名字，如果没有文件，则默认为None
     if essay == None:
         return HttpResponse("No files for upload!")
-    destination = open(os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name,essay.name),'wb+')    # 打开特定的文件进行二进制的写操作
+    destination = open(os.path.join(con.get_filepath(), "TeacherEssay",teacher_name,essay.name),'wb+')    # 打开特定的文件进行二进制的写操作
     for chunk in essay.chunks():      # 分块写入文件
          destination.write(chunk)
     destination.close()
@@ -623,11 +616,11 @@ def teacher_upload(request,teacher_id):
     str = essay.name
     if str.find('.zip') != -1:
         print('Uploading zip file...')
-        f = zipfile.ZipFile(os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name,essay.name), 'r')
+        f = zipfile.ZipFile(os.path.join(con.get_filepath(), "TeacherEssay",teacher_name,essay.name), 'r')
         i = 0
         for file in f.namelist():
             if i != 0 :
-                f.extract(file, os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name))
+                f.extract(file, os.path.join(con.get_filepath(), "TeacherEssay",teacher_name))
                 #file example: zip/深度学习时间记录.txt
                 essays.append(file)
             i = i + 1
@@ -640,13 +633,13 @@ def teacher_upload(request,teacher_id):
         (filename, extension) = os.path.splitext(essays[j])
         print(filename)
         # Change the uploaded files to pdf form
-        PdfTranstorm(['-o', os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name, filename + '.txt'), '-t', 'text',
-                      os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name, filename+'.pdf')])
+        PdfTranstorm(['-o', os.path.join(con.get_filepath(), "TeacherEssay",teacher_name, filename + '.txt'), '-t', 'text',
+                      os.path.join(con.get_filepath(), "TeacherEssay",teacher_name, filename+'.pdf')])
 
         # pdf translating
 
         # Store uploaded files to database
-        file = open(os.path.join("/home/xjy/InitData/TeacherEssay",teacher_name, filename + '.txt'), encoding='utf-8')
+        file = open(os.path.join(con.get_filepath(), "TeacherEssay",teacher_name, filename + '.txt'), encoding='utf-8')
         text = file.read()
         dealt_text = Preprocess_Handin(text)
         teacher = Teacher.objects.get(pk=teacher_id)
@@ -716,13 +709,14 @@ def begin_match(request,assistant_id):
     return JsonResponse({'json': "ok"})
     #return HttpResponseRedirect(reverse('recomm:checkmatchresult', args=(assistant_id)))
     #return check_matchresult(request,assistant_id)
-
+num_progress = 0
 def index_match():
 
     # 此处根据目前数据库情况看是否需要重建TeacherFigure
     TeacherFigure.objects.all().delete()
     init_teacherfigure()
-
+    num_progress = 0
+    print(num_progress)
     results = match()
     return results
 
@@ -742,6 +736,7 @@ def init_teacherfigure():
 def teacher_figures(teacher_id):
     # Get all teachers' essay
     teacher = Teacher.objects.get(pk=teacher_id)
+    #print(teacher_id);
     print('Setting teacher figure...')
     print(teacher.teacher_name)
     s = ''
@@ -754,7 +749,7 @@ def teacher_figures(teacher_id):
 
 
 
-num_progress = 0
+
 '''
 def process_data(request,assistant_id):
     n = 0
@@ -775,7 +770,7 @@ def get_progress(request,assistant_id):
 
     print('get_progress')
     print(num_progress)
-    return JsonResponse({'num': num_progress}, safe=False)
+    return JsonResponse(num_progress, safe=False)
 
 def initial_progress(request,assistant_id):
     # cookie检查
@@ -794,9 +789,9 @@ def match():
     Recommendation.objects.all().delete()
 
     # 从csv文件中读取数量限制的规则
-    vpro = pd.read_csv(os.path.join("/home/xjy/InitData/Input/Rules","Rule.csv"), sep=',', encoding='utf_8_sig')
-    teacher_reviewnum = vpro.loc[0,"teacher_reviewnum"]
-    student_sendnum = vpro.loc[0, "student_sendnum"]
+    vpro = pd.read_csv(os.path.join(con.get_filepath(), "Input/Rules","Rule.csv"), sep=',', encoding='utf_8_sig')
+    teacher_reviewnum = vpro.loc[0,"teacher_reviewnum"] #老师最多评审的论文数
+    student_sendnum = vpro.loc[0, "student_sendnum"] #学生论文送审老师数量
 
     results = {}
     # Calculate student's essay with each teacher's figure
@@ -804,7 +799,6 @@ def match():
     teachers = Teacher.objects.all()
     figure_li = []
     teacher_li = [] # teachers' ids
-    print('begin teacher!')
     for i in range(len(teachers)):
     #for i in range(5):
         teacher = teachers[i]
@@ -819,11 +813,8 @@ def match():
 
     # student's essay # for each studentessay, calculate the similarity between all teachers
     student_essays = StudentEssay.objects.all()
-    print('begin student!')
-    print(len(student_essays))
     k = 1
     for i in student_essays:
-        print(k)
         studentessay = i.student_essay_text
         processed_studentessay = Preprocess_Handin(studentessay)
         result = Similarity(processed_studentessay, processed_figure)
@@ -831,7 +822,7 @@ def match():
 
         # 进度条显示(因为计算复杂度使用了大部分的处理时间）
         global num_progress
-        num_progress = k*0.01 / len(student_essays) * 100
+        num_progress = k / len(student_essays) * 100
         print('process data')
         print(num_progress)
 
@@ -847,6 +838,9 @@ def match():
     for t in range(student_sendnum*len(student_essays)): # Need "student_sendnum*len(student_essays)" loops
         max = 0
         max_index = 0
+
+        tea_num = len(teacher_li)
+        teacher_relation = np.zeros((tea_num, tea_num), dtype=np.int) #二维数据记录i老师下的n个学生送审了论文给j老师
 
         # Clear the unreasonable items
         for p in range(len(student_essays)):
@@ -866,8 +860,14 @@ def match():
                     r = Relation.objects.filter(student=student)
                     for i in range(len(r)):
                         t = r[i].teacher_id
+                        if teacher_relation[teacher_li.index(t)][teacher_li.index(teacherid)] != 0:
+                            print("***********Same teacher************")
+                            flag += 1 # 将一个导师的学生分给不同的评阅人
+                            break
+
                         if teacherid == t:
                             flag += 1 # The teacher is this students' teacher
+                            break
 
                     # Check how many essays the teacher has to review
                     teacherreviewnum = len(Recommendation.objects.filter(recommend_teacher_id=teacherid))
@@ -895,6 +895,14 @@ def match():
         max_teachername = Teacher.objects.get(pk=max_teacherid).teacher_name
         max_studentessay.recommendation_set.create(recommend_teacher_id=max_teacherid, recommend_teacher_name=max_teachername)
         student_recommend[max_index] += 1
+
+        # record teacher_relation[i][j]+=1
+        student = max_studentessay.student
+        r = Relation.objects.filter(student=student)
+        for i in range(len(r)):
+            t = r[i].teacher_id
+            teacher_relation[teacher_li.index(t)][teacher_li.index(max_teacherid)] += 1
+
         # delete the item
         del results[max_studentessay.student_essay_title][0]
         print('Recommend OK. Delete: '+str(results[max_studentessay.student_essay_title][0]))
@@ -1009,12 +1017,12 @@ def check_matchresult(request,assistant_id):
         print('student_name '+student.student_name)
 
 
-    match_result.to_csv(os.path.join("/home/xjy/InitData/Output","Result.csv"),index=False, encoding='utf_8_sig')
+    match_result.to_csv(os.path.join(con.get_filepath(), "Output","Result.csv"),index=False, encoding='utf_8_sig')
 
     # csv to xls
     resultexcel = xlwt.Workbook()
     resultsheet = resultexcel.add_sheet("result")
-    csvfile = open(os.path.join("/home/xjy/InitData/Output", "Result.csv"), 'r')
+    csvfile = open(os.path.join(con.get_filepath(), "Output", "Result.csv"), 'r')
     reader = csv.reader(csvfile)
     l = 0
     for line in reader:
@@ -1023,20 +1031,20 @@ def check_matchresult(request,assistant_id):
             resultsheet.write(l, r, i)
             r = r + 1
         l = l + 1
-    resultexcel.save(os.path.join("/home/xjy/InitData/Output", "Result.xls"))
+    resultexcel.save(os.path.join(con.get_filepath(), "Output", "Result.xls"))
     print("OK")
 
     return render(request, 'recomm/assistant/match_result.html', {'grid_data': json.dumps(grid_data),'userid':assistant_id})
 
 def download_result(request):
-    filename='/home/xjy/InitData/Output/Result.xls'
+    filename=con.get_filepath()+'Output/Result.xls'
     response = StreamingHttpResponse(readFile(1,filename))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(filename)
     return response
 
 def download_fileformat_rule(request):
-    filename='/home/xjy/InitData/Doc/Fileformat.docx'
+    filename=con.get_filepath()+'Doc/Fileformat.docx'
     response = StreamingHttpResponse(readFile(1,filename))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(filename)

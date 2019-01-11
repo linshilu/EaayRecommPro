@@ -6,6 +6,7 @@ import pandas as pd
 import os
 import codecs
 from pandas import DataFrame
+import mysite.contexts as con
 
 # Init the students users and essays database
 def run():
@@ -14,7 +15,7 @@ def run():
 
    # Set up all student users
    print('Set up studentusers...')
-   studentusers = pd.read_csv(os.path.join("/home/xjy/InitData\Input\TestData", "StudentList.csv"), sep=',', encoding='utf_8_sig')
+   studentusers = pd.read_csv(os.path.join(con.get_filepath(), "Input\TestData", "StudentList.csv"), sep=',', encoding='utf_8_sig')
    studentlist = DataFrame(studentusers)
    for i in range(len(studentlist['学号'])):
       id = studentlist.iloc[i, 0]
@@ -26,7 +27,7 @@ def run():
    # init students' essays
    StudentEssay.objects.all().delete()
    print('Initiate student essays ...')
-   studentessays = pd.read_csv(os.path.join("/home/xjy/InitData\Input\TestData", "StudentEssay.csv"), sep=',', encoding='utf_8_sig')
+   studentessays = pd.read_csv(os.path.join(con.get_filepath(), "Input\TestData", "StudentEssay.csv"), sep=',', encoding='utf_8_sig')
    for i in range(len(studentessays['论文题目'])):
       if isinstance(studentessays.iloc[i, 2],str): # 有论文的项才处理
          id = studentessays.iloc[i, 0]
@@ -36,12 +37,12 @@ def run():
          title = stitle.strip()
          # read the essay
          '''
-         PdfTranstorm([ '-o', os.path.join("/home/xjy/InitData\Input\TestData", title + '.txt'), '-t', 'text',
-                    os.path.join("/home/xjy/InitData\TestData", title + '.pdf')])
+         PdfTranstorm([ '-o', os.path.join(con.get_filepath(), "Input\TestData", title + '.txt'), '-t', 'text',
+                    os.path.join(con.get_filepath(), "TestData", title + '.pdf')])
          '''
          # translate students' essays
-         ori_text_filepath = os.path.join("/home/xjy/InitData\Input\TestData", title + '.txt')
-         translate_text_filepath = os.path.join("/home/xjy/InitData\Input\TestData", title + '_en' + '.txt')
+         ori_text_filepath = os.path.join(con.get_filepath(), "Input\TestData", title + '.txt')
+         translate_text_filepath = os.path.join(con.get_filepath(), "Input\TestData", title + '_en' + '.txt')
          Translate(ori_text_filepath,translate_text_filepath)
 
          translate_file = open(translate_text_filepath,encoding='utf-8')

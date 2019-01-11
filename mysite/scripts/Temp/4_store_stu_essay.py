@@ -4,6 +4,7 @@ from recomm.tools.NLTK_handin import Preprocess_Handin
 from recomm.tools.Translate import Translate
 import pandas as pd
 import os
+import mysite.contexts as con
 import codecs
 from pandas import DataFrame
 
@@ -13,7 +14,7 @@ def run():
     print('Deleting student essays ...')
     StudentEssay.objects.all().delete()
     print('Adding student essays ...')
-    studentessays = pd.read_csv(os.path.join("/home/xjy/InitData/new_data", "new_studentessay_0419.csv"), sep=',',
+    studentessays = pd.read_csv(os.path.join(con.get_filepath(), "new_data", "new_studentessay_0419.csv"), sep=',',
                                 encoding='utf_8_sig')
     for i in range(len(studentessays['论文题目'])):
         if isinstance(studentessays.iloc[i, 2], str):  # 有论文的项才处理
@@ -26,7 +27,7 @@ def run():
 
             # read the essay
             try:
-                translate_text_filepath = os.path.join("/home/xjy/InitData/new_data/StudentEssay", title + '_en' + '.txt')
+                translate_text_filepath = os.path.join(con.get_filepath(), "new_data/StudentEssay", title + '_en' + '.txt')
                 translate_file = open(translate_text_filepath, encoding='utf-8')
             except FileNotFoundError:
                 print('********File not found:*********')
