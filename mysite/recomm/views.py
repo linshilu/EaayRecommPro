@@ -328,6 +328,7 @@ def submit_rule(request,assistant_id):
 
     # 页面跳转
     return HttpResponseRedirect(reverse('recomm:matchpage', args=(assistant_id)))
+    #return JsonResponse({'json': "ok"})
 
 def init_stu(stu_path):
     print('Clear Student Table...')
@@ -387,13 +388,27 @@ def init_relation(rel_path):
         relation.save()
     print('Set up relation OK.')
 
+def upload_progress(request,assistant_id):
+    # cookie检查
+    if (request.COOKIES['userid'] != assistant_id):
+        str = {'info': 'Please log in first.'}
+        return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
+
+    print('upload_progress')
+    print(upload_progressbar)
+    return JsonResponse({'num': upload_progressbar}, safe=False)
+
 def init_stuessay(stuessay_path,stuessay_folder_path):
     # init students' essays
     print('Delete student essays table ...')
     StudentEssay.objects.all().delete()
     print('Add student essays ...')
     studentessays = pd.read_csv(stuessay_path, sep=',',encoding='utf_8_sig')
+    m = 1
     for i in range(len(studentessays['姓名'])):
+        global upload_progressbar
+        upload_progressbar = m * 0.01 / len(studentessays['姓名']) * 100
+        m = m + 1
         if isinstance(studentessays.iloc[i, 2], str):  # 有论文的项才处理
             id = studentessays.iloc[i, 0]
             sname = studentessays.iloc[i, 1]
@@ -696,7 +711,7 @@ def begin_match(request,assistant_id):
     if (request.COOKIES['userid'] != assistant_id):
         str = {'info': 'Please log in first.'}
         return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
-
+    num_progress = 0
     results = index_match()
 
     # 最原始版本的结果查看
@@ -705,11 +720,10 @@ def begin_match(request,assistant_id):
     studentessays = StudentEssay.objects.all()
     return render(request, 'recomm/assistant/matchresult.html', {'students':students,'studentessays': studentessays,'results':results})
     '''
-
     return JsonResponse({'json': "ok"})
     #return HttpResponseRedirect(reverse('recomm:checkmatchresult', args=(assistant_id)))
     #return check_matchresult(request,assistant_id)
-num_progress = 0
+
 def index_match():
 
     # 此处根据目前数据库情况看是否需要重建TeacherFigure
@@ -761,7 +775,7 @@ def process_data(request,assistant_id):
     print('process_data')
     return JsonResponse({'name':"this"})
 '''
-
+num_progress = 0
 def get_progress(request,assistant_id):
     # cookie检查
     if (request.COOKIES['userid'] != assistant_id):
@@ -770,7 +784,7 @@ def get_progress(request,assistant_id):
 
     print('get_progress')
     print(num_progress)
-    return JsonResponse(num_progress, safe=False)
+    return JsonResponse({'num': num_progress}, safe=False)
 
 def initial_progress(request,assistant_id):
     # cookie检查
@@ -784,6 +798,7 @@ def initial_progress(request,assistant_id):
 # To Do # To extend the number of teachers and students and configure the rules
 # Match each student's essay with teacher and insert into the database of "Recommendation"
 def match():
+
     # clear the recommendation table first...
     print('Clearing recommendation database...')
     Recommendation.objects.all().delete()
@@ -819,9 +834,8 @@ def match():
         processed_studentessay = Preprocess_Handin(studentessay)
         result = Similarity(processed_studentessay, processed_figure)
         results[i.student_essay_title] = result # 将每篇学生论文和老师的论文比较相似度
-
-        # 进度条显示(因为计算复杂度使用了大部分的处理时间）
         global num_progress
+        # 进度条显示(因为计算复杂度使用了大部分的处理时间）
         num_progress = k / len(student_essays) * 100
         print('process data')
         print(num_progress)
