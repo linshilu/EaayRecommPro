@@ -328,7 +328,9 @@ def submit_rule(request,assistant_id):
 
     # 页面跳转
     return HttpResponseRedirect(reverse('recomm:matchpage', args=(assistant_id)))
+
     #return JsonResponse({'json': "ok"})
+
 
 def init_stu(stu_path):
     print('Clear Student Table...')
@@ -388,15 +390,20 @@ def init_relation(rel_path):
         relation.save()
     print('Set up relation OK.')
 
-def upload_progress(request,assistant_id):
-    # cookie检查
-    if (request.COOKIES['userid'] != assistant_id):
-        str = {'info': 'Please log in first.'}
-        return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
 
-    print('upload_progress')
-    print(upload_progressbar)
-    return JsonResponse({'num': upload_progressbar}, safe=False)
+    def upload_progress(request, assistant_id):
+        # cookie检查
+        if (request.COOKIES['userid'] != assistant_id):
+            str = {'info': 'Please log in first.'}
+            return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
+
+        print('upload_progress')
+        print(upload_progressbar)
+        return JsonResponse({'num': upload_progressbar}, safe=False)
+
+
+not_found = {}
+type_error = {}
 
 def init_stuessay(stuessay_path,stuessay_folder_path):
     # init students' essays
@@ -418,8 +425,7 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
             # title = str(id)+'_'+title
 
             # transforming
-            not_found = []
-            type_error = []
+
             try:
                 PdfTranstorm(['-o', os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt'), '-t', 'text',
                               os.path.join(stuessay_folder_path, title + '.pdf')])
@@ -427,30 +433,29 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
                 print('not found error')
                 print(name)
                 print(title)
-                not_found.append({name: title})
+                not_found[name] = title
             except pdfminer.pdfparser.PDFSyntaxError:
                 print('type error')
                 print(name)
                 print(title)
-                type_error.append({name: title})
+                type_error[name] = title
             except pdfminer.pdfdocument.PDFTextExtractionNotAllowed:
                 print('type error')
                 print(name)
                 print(title)
-                type_error.append({name: title})
+                type_error[name] = title
             except KeyError:
                 print('type error')
                 print(name)
                 print(title)
-                type_error.append({name: title})
+                type_error[name] = title
             else:
                 print(name)
                 print(title)
-
-            # translating
-            ori_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt')
-            translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
-            Translate(ori_text_filepath, translate_text_filepath)
+                # translating
+                ori_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt')
+                translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
+                Translate(ori_text_filepath, translate_text_filepath)
 
             # read the essay
             try:
@@ -470,6 +475,10 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
                 print('#########Save file:###########')
                 print(name)
                 print(title)
+    print('########File Not Found List:########')
+    print(not_found)
+    print('########Type Error List:#######')
+    print(type_error)
 
 def teacher_index(request,teacher_id):
     # cookie检查
@@ -711,6 +720,7 @@ def begin_match(request,assistant_id):
     if (request.COOKIES['userid'] != assistant_id):
         str = {'info': 'Please log in first.'}
         return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
+
     num_progress = 0
     results = index_match()
 
@@ -775,6 +785,7 @@ def process_data(request,assistant_id):
     print('process_data')
     return JsonResponse({'name':"this"})
 '''
+
 num_progress = 0
 def get_progress(request,assistant_id):
     # cookie检查
@@ -1007,8 +1018,33 @@ def check_matchresult(request,assistant_id):
 
 
     grid_data = []
-    match_result = pd.DataFrame(columns=['studentid', 'studentname', 'essaytitle', 'teacherid', 'teachername'])
+    match_result = pd.DataFrame(columns=['studentid', 'studentname', 'essaytitle', 'teacherid', 'teachername', 'remark'])
     line = 0
+
+    studentessays = pd.read_csv(os.path.join(con.get_filepath(), "Input","StudentEssay.csv"), sep=',', encoding='utf_8_sig')
+    for i in range(len(studentessays['姓名'])):
+        sname = studentessays.iloc[i, 1]
+        name = sname.strip()
+        if name in not_found:
+            id = studentessays.iloc[i, 0]
+            stitle = studentessays.iloc[i, 2]
+            title = stitle.strip()
+            match_result.loc[line, 'studentid'] = id
+            match_result.loc[line, 'studentname'] = name
+            match_result.loc[line, 'essaytitle'] = title
+            match_result.loc[line, 'remark'] = '未上传对应论文'
+            line = line + 1
+        if name in type_error:
+            id = studentessays.iloc[i, 0]
+            stitle = studentessays.iloc[i, 2]
+            title = stitle.strip()
+            match_result.loc[line, 'studentid'] = id
+            match_result.loc[line, 'studentname'] = name
+            match_result.loc[line, 'essaytitle'] = title
+            match_result.loc[line, 'remark'] = '上传论文文件有问题'
+            line = line + 1
+
+
     for i in range(len(StudentEssay.objects.all())):
         studentessay = StudentEssay.objects.all()[i]
         student = studentessay.student
