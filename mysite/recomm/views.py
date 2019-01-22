@@ -1043,7 +1043,8 @@ def check_matchresult(request,assistant_id):
             match_result.loc[line, 'essaytitle'] = title
             match_result.loc[line, 'remark'] = '上传论文文件有问题'
             line = line + 1
-
+    not_found.clear()
+    type_error.clear()
 
     for i in range(len(StudentEssay.objects.all())):
         studentessay = StudentEssay.objects.all()[i]
