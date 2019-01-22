@@ -391,7 +391,7 @@ def init_relation(rel_path):
     print('Set up relation OK.')
 
 
-    def upload_progress(request, assistant_id):
+def upload_progress(request, assistant_id):
         # cookie检查
         if (request.COOKIES['userid'] != assistant_id):
             str = {'info': 'Please log in first.'}
