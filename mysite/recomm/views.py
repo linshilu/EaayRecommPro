@@ -328,7 +328,9 @@ def submit_rule(request,assistant_id):
 
     # 页面跳转
     return HttpResponseRedirect(reverse('recomm:matchpage', args=(assistant_id)))
-    # return JsonResponse({'json': "ok"})
+
+    #return JsonResponse({'json': "ok"})
+
 
 def init_stu(stu_path):
     print('Clear Student Table...')
@@ -388,6 +390,7 @@ def init_relation(rel_path):
         relation.save()
     print('Set up relation OK.')
 
+
     def upload_progress(request, assistant_id):
         # cookie检查
         if (request.COOKIES['userid'] != assistant_id):
@@ -401,6 +404,7 @@ def init_relation(rel_path):
 
 not_found = {}
 type_error = {}
+
 def init_stuessay(stuessay_path,stuessay_folder_path):
     # init students' essays
     print('Delete student essays table ...')
@@ -726,7 +730,6 @@ def begin_match(request,assistant_id):
     studentessays = StudentEssay.objects.all()
     return render(request, 'recomm/assistant/matchresult.html', {'students':students,'studentessays': studentessays,'results':results})
     '''
-
     return JsonResponse({'json': "ok"})
     #return HttpResponseRedirect(reverse('recomm:checkmatchresult', args=(assistant_id)))
     #return check_matchresult(request,assistant_id)
@@ -794,6 +797,14 @@ def get_progress(request,assistant_id):
     print(num_progress)
     return JsonResponse({'num': num_progress}, safe=False)
 
+def initial_progress(request,assistant_id):
+    # cookie检查
+    if (request.COOKIES['userid'] != assistant_id):
+        str = {'info': 'Please log in first.'}
+        return render(request, 'recomm/login.html', {'data': json.dumps(str)})  # 通过参数告知前端进行错误提示
+
+    num_progress = 0
+    return JsonResponse({'num': num_progress}, safe=False)
 
 # To Do # To extend the number of teachers and students and configure the rules
 # Match each student's essay with teacher and insert into the database of "Recommendation"
@@ -834,9 +845,8 @@ def match():
         processed_studentessay = Preprocess_Handin(studentessay)
         result = Similarity(processed_studentessay, processed_figure)
         results[i.student_essay_title] = result # 将每篇学生论文和老师的论文比较相似度
-
-        # 进度条显示(因为计算复杂度使用了大部分的处理时间）
         global num_progress
+        # 进度条显示(因为计算复杂度使用了大部分的处理时间）
         num_progress = k / len(student_essays) * 100
         print('process data')
         print(num_progress)
