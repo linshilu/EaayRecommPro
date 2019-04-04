@@ -1092,7 +1092,11 @@
 		<script type="text/javascript">
 
 			jQuery(function($) {
+				var ip_address = {{ip_address|safe}}
 				var userid = {{userid}};
+				var url = ip_address+"/recomm/assistant/submitrule/3/";
+				document.getElementById("validation-form").action = url;
+
 				// The spinner
 				$('#spinner1').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
 				.closest('.ace-spinner')
@@ -1340,7 +1344,7 @@
 				    $('#prev').attr("disabled", true);
 				    $("a").click(function(){return false;});
 				    var sitv = setInterval(function(){
-        				var show_process_url = "http://127.0.0.1:8000/recomm/assistant/uploadprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
+        				var show_process_url = ip_address + "/recomm/assistant/uploadprogress/"+userid+"/";                  // prog_url指请求进度的url，后面会在django中设置
         				$.getJSON(show_process_url, function(res){
         					console.log(res);
         					var result = res.num * 100;
@@ -1537,7 +1541,7 @@
                 	//formData.append("token", token_value); // 其他参数按这样子加入
 
                 	var xhr = new XMLHttpRequest();
-                	xhr.open('POST', "http://127.0.0.1:8000/recomm/assistant/submitrule/0/");
+                	xhr.open('POST', ip_address + "/recomm/assistant/submitrule/0/");
                 	// 上传完成后的回调函数
                 	xhr.onload = function () {
                     	if (xhr.status === 200) {
