@@ -343,7 +343,7 @@ def init_stu(stu_path):
     for i in range(len(studentlist['学号'])):
         id = studentlist.iloc[i, 0]
         sname = studentlist.iloc[i, 1]
-        name = sname.strip()
+        name = sname
         student = Student(id=id, student_name=name, student_password='0000')
         student.save()
         print(id)
@@ -1023,8 +1023,9 @@ def check_matchresult(request,assistant_id):
 
     studentessays = pd.read_csv(os.path.join(con.get_filepath(), "Input","StudentEssay.csv"), sep=',', encoding='utf_8_sig')
     for i in range(len(studentessays['姓名'])):
-        sname = studentessays.iloc[i, 1]
-        name = sname.strip()
+        #sname = str(studentessays.iloc[i, 1])
+        #name = sname.strip()
+        name=studentessays.iloc[i, 1]
         if name in not_found:
             id = studentessays.iloc[i, 0]
             stitle = studentessays.iloc[i, 2]

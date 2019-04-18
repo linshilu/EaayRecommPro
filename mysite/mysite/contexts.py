@@ -3,9 +3,9 @@
 from django.conf import settings
 
 def global_var(request):
-    return {'ip_address': '"http://127.0.0.1:8000"',
-            'file_path': '"/home/xjy/InitData/"'
+    return {'ip_address': '"http://172.18.218.95:8000"',
+            'file_path': '"/home/lsl/InitData/"'
             }
 
 def get_filepath():
-    return "/home/xjy/InitData/"
+    return "/home/lsl/InitData/"
