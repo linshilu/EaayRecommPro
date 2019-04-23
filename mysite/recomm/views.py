@@ -839,7 +839,7 @@ def match():
 
     # student's essay # for each studentessay, calculate the similarity between all teachers
     # test
-    student_essays = StudentEssay.objects.all()[100:]
+    student_essays = StudentEssay.objects.all()
     k = 1
     for i in student_essays:
         studentessay = i.student_essay_text

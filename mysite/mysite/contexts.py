@@ -3,7 +3,7 @@
 from django.conf import settings
 
 def global_var(request):
-    return {'ip_address': '"http://172.18.218.95:8001"',
+    return {'ip_address': '"http://172.18.218.95:8000"',
             'file_path': '"/home/lsl/InitData/"'
             }
 
