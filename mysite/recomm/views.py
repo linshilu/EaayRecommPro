@@ -422,7 +422,7 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
             name = sname.strip()
             stitle = studentessays.iloc[i, 2]
             title = stitle.strip()
-            # title = str(id)+'_'+title
+            title = str(id)+'_'+title
 
             # transforming
 
@@ -453,9 +453,9 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
                 print(name)
                 print(title)
                 # translating
-                ori_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt')
-                translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
-                Translate(ori_text_filepath, translate_text_filepath)
+                #ori_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '.txt')
+                #translate_text_filepath = os.path.join(con.get_filepath(), "Input/StudentEssay", title + '_en' + '.txt')
+                #Translate(ori_text_filepath, translate_text_filepath)
 
             # read the essay
             try:
@@ -466,7 +466,7 @@ def init_stuessay(stuessay_path,stuessay_folder_path):
                 print(sname)
                 print(title)
             else:
-                translate_text = translate_file.read()
+                translate_text = translate_file.read()[0:10000]
 
                 # store to the database
                 student = Student.objects.get(pk=id)
@@ -838,7 +838,8 @@ def match():
     processed_figure = Preprocess_Essays(figure_li)
 
     # student's essay # for each studentessay, calculate the similarity between all teachers
-    student_essays = StudentEssay.objects.all()
+    # test
+    student_essays = StudentEssay.objects.all()[100:]
     k = 1
     for i in student_essays:
         studentessay = i.student_essay_text
@@ -885,14 +886,15 @@ def match():
                     r = Relation.objects.filter(student=student)
                     for i in range(len(r)):
                         t = r[i].teacher_id
-                        if teacher_relation[teacher_li.index(t)][teacher_li.index(teacherid)] != 0:
-                            print("***********Same teacher************")
-                            flag += 1 # 将一个导师的学生分给不同的评阅人
-                            break
+                        if(teacher_li.count(t)!=0):
+                            if teacher_relation[teacher_li.index(t)][teacher_li.index(teacherid)] != 0:
+                                print("***********Same teacher************")
+                                flag += 1 # 将一个导师的学生分给不同的评阅人
+                                break
 
-                        if teacherid == t:
-                            flag += 1 # The teacher is this students' teacher
-                            break
+                            if teacherid == t:
+                                flag += 1 # The teacher is this students' teacher
+                                break
 
                     # Check how many essays the teacher has to review
                     teacherreviewnum = len(Recommendation.objects.filter(recommend_teacher_id=teacherid))
@@ -926,7 +928,8 @@ def match():
         r = Relation.objects.filter(student=student)
         for i in range(len(r)):
             t = r[i].teacher_id
-            teacher_relation[teacher_li.index(t)][teacher_li.index(max_teacherid)] += 1
+            if (teacher_li.count(t) != 0):
+                teacher_relation[teacher_li.index(t)][teacher_li.index(max_teacherid)] += 1
 
         # delete the item
         del results[max_studentessay.student_essay_title][0]

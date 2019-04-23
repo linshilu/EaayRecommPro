@@ -42,7 +42,8 @@ def Translate(ori_text_filepath,translate_text_filepath):
                 line2 = line.strip('\n')
                 text = text + line2
 
-            k = int(len(text)/5000)
+            #k = int(len(text)/5000) # only translate 10000
+            k=2
             result = ''
             for i in range(k):
                 totranslate = text[i*5000:i*5000+5000]

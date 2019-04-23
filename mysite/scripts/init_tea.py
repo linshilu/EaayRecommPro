@@ -65,7 +65,7 @@ def run():
             # store to the database
             # file = codecs.open(os.path.join(con.get_filepath(), "TeacherEssay", name, title + '_en' + '.txt'), encoding='utf-8')
             file = codecs.open(os.path.join(con.get_filepath(), "TeacherEssay", name, title + '.txt'), encoding='utf-8')
-            text = file.read()
+            text = file.read()[0:20000]
 
             teacher = Teacher.objects.get(pk=id)
             essay = TeacherEssay(teacher=teacher, teacher_essay_title=title, teacher_essay_text=text)

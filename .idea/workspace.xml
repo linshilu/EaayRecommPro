@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351aacfb-bd53-4d8b-8117-d2a3eab9fcf8" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/mysite/scripts/init_stu_essay.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/mysite/contexts.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/contexts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/recomm/tools/Translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/tools/Translate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/recomm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/recomm/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/scripts/init_tea.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/scripts/init_tea.py" afterDir="false" />
     </list>
@@ -20,8 +22,52 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/recomm/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="345" column="20" lean-forward="true" selection-start-line="345" selection-start-column="20" selection-end-line="345" selection-end-column="20" />
+            <state relative-caret-position="100">
+              <caret line="841" column="52" selection-start-line="841" selection-start-column="52" selection-end-line="841" selection-end-column="52" />
+              <folding>
+                <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/recomm/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="21" column="31" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/recomm/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="Translate.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/Translate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="48" column="54" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="similarity.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/similarity.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -29,17 +75,32 @@
       <file leaf-file-name="init_tea.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/scripts/init_tea.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+            <state relative-caret-position="480">
+              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#90#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/recomm/urls.py">
+      <file leaf-file-name="init_stu_essay.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/scripts/init_stu_essay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="80" />
+            <state relative-caret-position="600">
+              <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="63" />
+              <folding>
+                <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="match.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/scripts/match.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="15" selection-start-column="15" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -48,48 +109,7 @@
         <entry file="file://$PROJECT_DIR$/mysite/mysite/contexts.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="match_page.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5525">
-              <caret line="936" column="99" selection-start-line="936" selection-start-column="93" selection-end-line="936" selection-end-column="99" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="663" column="47" selection-start-line="663" selection-start-column="47" selection-end-line="663" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="set_rule.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="739" column="60" selection-start-line="739" selection-start-column="60" selection-end-line="739" selection-end-column="60" />
-              <folding>
-                <element signature="e#3736#3753#0" expanded="true" />
-                <element signature="e#4105#4122#0" expanded="true" />
-                <element signature="e#4490#4507#0" expanded="true" />
-                <element signature="e#4897#4914#0" expanded="true" />
-                <element signature="e#11366#11386#0" expanded="true" />
-                <element signature="e#17696#17702#0" expanded="true" />
-                <element signature="e#25716#25722#1" expanded="true" />
-                <element signature="e#28701#28738#0" expanded="true" />
-                <element signature="e#28945#28967#0" expanded="true" />
-                <element signature="e#29086#29143#0" expanded="true" />
-                <element signature="e#29452#29493#0" expanded="true" />
-                <element signature="e#29526#29567#0" expanded="true" />
-              </folding>
+              <caret line="5" column="53" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -106,19 +126,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>init</find>
-      <find>172.18.219.176</find>
-      <find>progressbar</find>
-      <find>$PROJECT_DIR$/../../../lsl</find>
-      <find>推荐规则</find>
-      <find>fuelux-wizard-container</find>
-      <find>正在进行推荐，请耐心等候，推荐完毕后会自动跳转至结果页面</find>
-      <find>form-horizontal</find>
-      <find>Finish</find>
-      <find>finished.fu.wizard</find>
-      <find>btn-next</find>
       <find>172.168.66.128</find>
-      <find>init_stuessay</find>
       <find>192.168.66.128</find>
       <find>$PROJECT_DIR$/../../../zafarizb</find>
       <find>$PROJECT_DIR$/../../../xujieyu</find>
@@ -136,6 +144,18 @@
       <find>userid</find>
       <find>127.0.0</find>
       <find>figure</find>
+      <find>upload</find>
+      <find>upload_progressbar</find>
+      <find>init_stuessay</find>
+      <find>init_stuess</find>
+      <find>init_</find>
+      <find>init_stu</find>
+      <find>match</find>
+      <find>match()</find>
+      <find>hand</find>
+      <find>set</find>
+      <find>set_rule</find>
+      <find>160</find>
     </findStrings>
     <replaceStrings>
       <replace>recomm</replace>
@@ -168,12 +188,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mysite/scripts/temp_adduser.py" />
         <option value="$PROJECT_DIR$/mysite/polls/models.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/2_translate_stu.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/3_store_stu.py" />
         <option value="$PROJECT_DIR$/mysite/polls/views.py" />
-        <option value="$PROJECT_DIR$/mysite/scripts/match.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/print_tea_user.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/output.py" />
         <option value="$PROJECT_DIR$/mysite/polls/urls.py" />
@@ -188,11 +206,9 @@
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/index.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/handin_studentessay.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/detail.html" />
-        <option value="$PROJECT_DIR$/mysite/recomm/tools/Translate.py" />
         <option value="$USER_HOME$/Anaconda3/Lib/zipfile.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/manage_student.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/user_info.html" />
-        <option value="$PROJECT_DIR$/mysite/scripts/init_stu.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/tools/NLTK_essays.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/tools/NLTK_handin.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/1_store_relation.py" />
@@ -216,8 +232,12 @@
         <option value="$PROJECT_DIR$/mysite/recomm/urls.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html" />
         <option value="$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html" />
-        <option value="$PROJECT_DIR$/mysite/mysite/contexts.py" />
+        <option value="$PROJECT_DIR$/mysite/recomm/tools/Translate.py" />
+        <option value="$PROJECT_DIR$/mysite/scripts/init_stu.py" />
+        <option value="$PROJECT_DIR$/mysite/scripts/init_stu_essay.py" />
+        <option value="$PROJECT_DIR$/mysite/scripts/match.py" />
         <option value="$PROJECT_DIR$/mysite/scripts/init_tea.py" />
+        <option value="$PROJECT_DIR$/mysite/mysite/contexts.py" />
         <option value="$PROJECT_DIR$/mysite/recomm/views.py" />
       </list>
     </option>
@@ -239,7 +259,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="zipfile&#9;null&#9;null&#10;zipfile.py&#9;FILE&#9;file://C:/Softwares/Anaconda/Lib/zipfile.py&#10;fname&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/EssayRecomPro-1" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/mysite/result1.txt" />
   </component>
@@ -417,7 +437,6 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.15036497" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50214595" side_tool="true" weight="0.06504065" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49785408" weight="0.06387921" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.192" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Python Console" order="8" />
@@ -436,30 +455,31 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49785408" weight="0.06387921" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15036497" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.192" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.192" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49785408" weight="0.06387921" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15036497" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29662922" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50214595" side_tool="true" weight="0.06504065" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="8" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,11 +530,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/urlset.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/polls/index.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/polls/login.html" />
     <entry file="file://$PROJECT_DIR$/mysite/recomm/config.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -568,13 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/Translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -725,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="105" column="38" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -746,20 +747,6 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/similarity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/recomm/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -786,21 +773,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/match_page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5525">
+        <state relative-caret-position="14040">
           <caret line="936" column="99" selection-start-line="936" selection-start-column="93" selection-end-line="936" selection-end-column="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/teacher/teacher_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="9945">
           <caret line="663" column="47" selection-start-line="663" selection-start-column="47" selection-end-line="663" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/templates/recomm/assistant/set_rule.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="11085">
           <caret line="739" column="60" selection-start-line="739" selection-start-column="60" selection-end-line="739" selection-end-column="60" />
           <folding>
             <element signature="e#3736#3753#0" expanded="true" />
@@ -819,24 +806,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/contexts.py">
+    <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/similarity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+        <state relative-caret-position="570">
+          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/recomm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/recomm/tools/Translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="48" column="54" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/scripts/match.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/scripts/init_tea.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+        <state relative-caret-position="480">
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/mysite/contexts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="53" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/scripts/init_stu_essay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="63" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/recomm/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/recomm/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="345" column="20" lean-forward="true" selection-start-line="345" selection-start-column="20" selection-end-line="345" selection-end-column="20" />
+        <state relative-caret-position="100">
+          <caret line="841" column="52" selection-start-line="841" selection-start-column="52" selection-end-line="841" selection-end-column="52" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
